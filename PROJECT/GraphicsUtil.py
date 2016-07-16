@@ -17,7 +17,7 @@ heroSprite.set_colorkey(BLACK)
 
 
 # This loads an image as a surface. It takes name of the image file
-someLoadedImage = pygame.image.load("ball.png")
+someLoadedImage = pygame.image.load("C:/Users/User/Desktop/Visual Studio Code Files/Level-3/ball.png")
 someLoadedImage = pygame.transform.scale(someLoadedImage, (20, 20))
 someLoadedImage.set_colorkey(WHITE)
 # <<ADVANCED>> This can some how make screen.blit(someLoadedImage, (x, y)) much faster

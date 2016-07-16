@@ -15,7 +15,7 @@ def updateGame():
 
 
 # A method that does all the drawing for you.
-def draw(screen):
+def draw(self,screen):
     # setup a differnt background, 
     screen.fill(Graph.BLACK)
     # copy the image of hero to the screen at the cordinate of hero

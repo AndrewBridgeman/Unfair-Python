@@ -1,12 +1,18 @@
 #Unfair Mario Game
 #Authors: Jon A., Andrew B., Peter V., Bri S.
 import pygame
+pygame.init()
+clock = pygame.time.Clock()
+screen = pygame.display.set_mode((800,800))
+pygame.key.set_repeat(50, 50)
 from pygame.locals import *
 import GameLogic
+from GameLogic import Game,Graph
 
-pygame.init()
 
-screen = pygame.display.set_mode((800,800))
+
+
+
 pygame.display.set_caption("Demo")
 
 #Define event loop
@@ -31,22 +37,16 @@ def eventLoop():
             # if someone presses some key
             # <event.key> key attribute of a key-down event encodes which key is pressed
             # move the hero accordingly
-                if event.key == pygame.K_UP:
-                    GameLogic.y -= 10
-                elif event.key == pygame.K_DOWN:
-                    GameLogic.y += 10
-                elif event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT:
                     GameLogic.x -= 10
                 elif event.key == pygame.K_RIGHT:
                     GameLogic.x += 10
 
             pygame.draw.circle(screen,(130,30,250), center, radius)
-                elif event.type == pygame.MOUSEBUTTONDOWN:
-                x, y = event.pos
+            
             # move the hero to this position
-                GameLogic.x = x
-                GameLogic.y = y
-            pygame.draw.circle(screen,(130,30,250), center, radius)
+           
+           
     # The main game logic block
     
     # interactive objects
