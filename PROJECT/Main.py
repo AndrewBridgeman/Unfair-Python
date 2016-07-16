@@ -9,10 +9,6 @@ from pygame.locals import *
 import GameLogic
 from GameLogic import Game,Graph
 
-
-
-
-
 pygame.display.set_caption("Demo")
 
 #Define event loop
