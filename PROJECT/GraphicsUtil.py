@@ -70,3 +70,10 @@ for i in range(14, 9, -1):
 for i in range(9, 0, -1):
 	addFrameToAnimation(BLUE, i)
 
+#-----------------------------------------------------------------------#
+#Starting Edits Here#
+#-----------------------------------------------------------------------#
+
+
+floor = pygame.Surface((200,100))
+pygame.draw.rect(floor, WHITE, (0,400,200,50))

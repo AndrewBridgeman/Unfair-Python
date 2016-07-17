@@ -1,17 +1,17 @@
 import pygame
-import GraphicsUtil as Graph
+#import GraphicsUtil as Graph
 
 
 x = 0
 y = 0
-img = Graph.heroSprite
+#img = Graph.heroSprite
 
 # update the game
 def updateGame():
 	# if you want to assign a global variable in Python, you need to let Python know
     global x, y
-    x += 1
-    y += 1
+    x += 0
+    y -= 0
 
 
 # A method that does all the drawing for you.
