@@ -1,26 +1,23 @@
+#--------------------------
+#Initialize pygame
+#--------------------------
 import pygame
 from pygame.locals import *
-import GameLogic
-
-#import GraphicsUtil 
-#--Needs ball.png fix, id say to just comment your location of ball.png underneath so we all can run this and just sub in your path
-
-#import GameLogic
-#--CallsGraphicsUtil in, still has same problem
-
-#Initialize pygame & clock
+#Actually initialize pygame
 pygame.init()
+
+#Initialize the clock for the game, get that 60fps
 clock = pygame.time.Clock()
 
-#Make a screen
+#Make a screen of 500x500 resolution
 screen = pygame.display.set_mode((500,500))
 
-#Define COLORS
-WHITE = (255,255,255)
-BLACK = (0,0,0)
-RED = (255,0,0)
-GREEN = (0,255,0)
-BLUE = (0,0,255)
+#Make the game have the ability to be pressed and held
+pygame.key.set_repeat(50,50)
+
+#Get GameLogic in here
+import GameLogic
+#If you need GraphicsUtil, call as GameLogic.Graph
 
 while True:
 #Use all events received by pygame
@@ -39,13 +36,18 @@ while True:
                 GameLogic.x -= 10
             elif event.key == pygame.K_RIGHT:
                 GameLogic.x += 10
+
+
+
+
+#Dont need, as we have no want for passively continued mvmt
     GameLogic.updateGame()
 
-    x = 20
-    y = 280
-    pygame.draw.circle(screen, RED, (x,y), 20)
 
-    pygame.draw.rect(screen, RED, (0,300,500,100))
+
+    GameLogic.draw(screen)
+
     pygame.display.flip()
 
+    clock.tick(60)
 
