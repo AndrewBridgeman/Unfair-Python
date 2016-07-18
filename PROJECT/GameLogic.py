@@ -8,13 +8,22 @@ img = Graph.heroSprite
 Fl = Graph.Fl
 x1 = 0
 y1 = 400
+
+pressUp = False
+pressLeft = False
+pressRight = False
+pressSpace = False
+
+
+
+
 # update the game
 def updateGame():
 	# if you want to assign a global variable in Python, you need to let Python know
     global x, y
     if y + 40 <= 400:
         x += 0
-        y += 1
+        y += 1.5
 
 
 # A method that does all the drawing for you.

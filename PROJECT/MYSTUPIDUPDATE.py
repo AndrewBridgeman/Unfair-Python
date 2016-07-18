@@ -22,19 +22,55 @@ import GameLogic
 while True:
 #Use all events received by pygame
     eventList = pygame.event.get()
-    isFalling = True
+    
     for event in eventList:
         print(event)
         if event.type == pygame.QUIT:
             exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP: # Still need to make a tru jumping function, more than likely in GameLogic
-                GameLogic.y -= 10
+                if GameLogic.y >= 360:
+                    GameLogic.y -= 51
                 #GameLogic.jump()
+                GameLogic.pressUp = True
+
             elif event.key == pygame.K_LEFT:
-                GameLogic.x -= 10
+                if GameLogic.x >= 5:
+                    GameLogic.x -= 10
+                GameLogic.pressLeft = True
             elif event.key == pygame.K_RIGHT:
                 GameLogic.x += 10
+                GameLogic.pressRight = True
+            elif event.key == pygame.K_SPACE:
+                GameLogic.y -= 10
+                GameLogic.pressUp = True
+            elif event.key != pygame.K_SPACE:
+                GameLogic.pressUp = False
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP: 
+                GameLogic.pressUp = False
+            elif event.key == pygame.K_LEFT:
+                GameLogic.pressLeft = False
+            elif event.key == pygame.K_RIGHT:
+                GameLogic.pressRight = False 
+            elif event.key == pygame.K_SPACE:
+                GameLogic.pressSpace = False
+        if GameLogic.pressUp == True and GameLogic.pressRight == True:
+                GameLogic.x += 10
+                GameLogic.y -= 10
+        if GameLogic.pressSpace == True and GameLogic.pressRight == True:
+                GameLogic.x += 10
+                GameLogic.y -= 10
+        if GameLogic.pressUp == True and GameLogic.pressLeft == True:
+                GameLogic.x -= 10
+                GameLogic.y -= 10
+        if GameLogic.pressSpace == True and GameLogic.pressLeft == True:
+                GameLogic.x -= 10
+                GameLogic.y -= 10
+
+
+                
+
 
 
 
