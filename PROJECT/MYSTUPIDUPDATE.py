@@ -35,12 +35,11 @@ while True:
                 GameLogic.pressUp = True
 
             elif event.key == pygame.K_LEFT:
-
                 if GameLogic.x >= 5 and GameLogic.y != 0:
                     GameLogic.x -= 10
                     GameLogic.pressLeft = True
                 if GameLogic.x <= 5 and GameLogic.y != 0:
-=======
+                    GameLogic.pressLeft = False
                 if GameLogic.x >= 5 and GameLogic.y!=0:
                     GameLogic.x -= 10
                     GameLogic.pressLeft = True
@@ -57,12 +56,10 @@ while True:
                 GameLogic.pressLeft = False
             elif event.key == pygame.K_RIGHT:
                 GameLogic.pressRight = False 
-<<<<<<< HEAD
             elif event.key == pygame.K_SPACE:
                 GameLogic.pressSpace = False
 
-=======
->>>>>>> origin/master
+
         if GameLogic.pressUp == True and GameLogic.pressRight == True:
                 if GameLogic.y>=360:
                     GameLogic.y -= 50

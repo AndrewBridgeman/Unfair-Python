@@ -7,14 +7,14 @@ y = 360
 img = Graph.heroSprite
 Fl = Graph.Fl
 x1 = 0
-y1 = 400
+y1 = 200
 
 pressUp = False
 pressLeft = False
 pressRight = False
 pressSpace = False
 
-rectList = [Graph.Pl1, Graph.Pl2]
+
 
 
 # update the game
