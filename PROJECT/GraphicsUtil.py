@@ -1,6 +1,5 @@
 import pygame
 
-
 #Define COLORS
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -11,37 +10,20 @@ PURPLE = (255, 51, 153)
 BLUE = (0, 0, 255)
 GREY = (128,128,128)
 
-
-
-heroSprite = pygame.Surface((40, 40))
-<<<<<<< HEAD
-pygame.draw.circle(heroSprite, RED, (20,20), 20)
-
-
-Fl = pygame.Surface((500,150))
-#pygame.draw.rect(Fl, BLUE, (250,0,200,40))
-
-test = pygame.Surface((200,40))
-pygame.draw.rect(test, BLUE, (0,0,200,40))
-
-=======
-
 Fl = pygame.Surface((450,40))
-#pygame.draw.rect(Fl, WHITE, (0,0,200,40))
+pygame.draw.rect(Fl, WHITE, (0,0,200,40))
 
-pygame.draw.rect(Fl, BLUE, (250,0,200,40))
-#=======
 Fl = pygame.Surface((500,150))
 pygame.draw.rect(Fl, WHITE, (0,0,500,40))
 pygame.draw.rect(Fl, BLUE, (200,5, 400, -50))
 
-pygame.draw.circle(heroSprite, RED, (20,20), 20)
 
 # set_colorkey(<COLOR>) configure <COLOR> to be transparent
-#heroSprite.set_colorkey(BLACK)
-#Fl.set_colorkey(BLACK)
 
+test = pygame.Surface ((200,40))
 
+floor = pygame.Surface((200,100))
+pygame.draw.rect(floor, WHITE, (0,400,200,50))
 
 #Classes begin here
 class Platform:
@@ -65,48 +47,25 @@ Pl1.draw()
 Pl2 = Platform(Fl, WHITE, 300, 0, 200, 40)
 Pl2.draw()
 
+screen = pygame.display.set_mode((500,500))
+#Floor Surface
+Fl = pygame.Surface((500,150))
+pygame.draw.rect(Fl, WHITE, (0,0,500,40))
+pygame.draw.rect(Fl, BLUE, (200,5, 400, -50))
+
+#Character Surface
+
+background = pygame.Surface(screen.get_size())
+background = background.convert()
+background = ("/Users/BrionnaSlaughter1/Desktop/Python Programming/Python/Unfair-Python/PROJECT/game-background.jpg")
 
 
+someLoadedImage = pygame.image.load("/Users/BrionnaSlaughter1/Desktop/Python Programming/Python/Unfair-Python/PROJECT/Snake.png")
+someLoadedImage = pygame.transform.scale(someLoadedImage, (60, 40))
+someLoadedImage.set_colorkey(WHITE)
 
+pygame.display.flip()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#---------------------------------------------------------
-#None of this works with this, and I don't feel like getting rid of all of it
-#So I will just comment all of it out and move it down'
-# ------------------------------
-
-# This loads an image as a surface. It takes name of the image file
-#someLoadedImage = pygame.image.load("C:/Users/User/Desktop/Visual Studio Code Files/Level-3/ball.png")
-#someLoadedImage = pygame.transform.scale(someLoadedImage, (20, 20))
-#someLoadedImage.set_colorkey(WHITE)
 # <<ADVANCED>> This can some how make screen.blit(someLoadedImage, (x, y)) much faster
 # ============ because it convert someLoadedImage into a format based on the current resolution
 #someLoadedImage = someLoadedImage.convert()
@@ -160,3 +119,4 @@ Pl2.draw()
 #-----------------------------------------------------------------------#
 #Starting Edits Here#
 #-----------------------------------------------------------------------#
+

@@ -4,7 +4,7 @@ import GraphicsUtil as Graph
 
 x = 20
 y = 360
-img = Graph.heroSprite
+img = Graph.someLoadedImage
 Fl = Graph.Fl
 x1 = 0
 y1 = 400
