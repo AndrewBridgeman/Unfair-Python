@@ -10,15 +10,42 @@ PURPLE = (255, 51, 153)
 BLUE = (0, 0, 255)
 GREY = (128,128,128)
 
+<<<<<<< HEAD
 Fl = pygame.Surface((450,40))
 pygame.draw.rect(Fl, WHITE, (0,0,200,40))
 
 Fl = pygame.Surface((500,150))
 pygame.draw.rect(Fl, WHITE, (0,0,500,40))
 pygame.draw.rect(Fl, BLUE, (200,5, 400, -50))
+=======
+
+
+heroSprite = pygame.Surface((40, 40))
+
+pygame.draw.circle(heroSprite, RED, (20,20), 20)
+
+
+Fl = pygame.Surface((500,400))
+#pygame.draw.rect(Fl, BLUE, (250,0,200,40))
+
+test = pygame.Surface((200,40))
+pygame.draw.rect(test, BLUE, (0,0,200,40))
+
+
+
+#pygame.draw.rect(Fl, WHITE, (0,0,200,40))
+
+
+
+>>>>>>> origin/master
 
 
 # set_colorkey(<COLOR>) configure <COLOR> to be transparent
+<<<<<<< HEAD
+=======
+heroSprite.set_colorkey(BLACK)
+Fl.set_colorkey(BLACK)
+>>>>>>> origin/master
 
 test = pygame.Surface ((200,40))
 
@@ -41,10 +68,10 @@ class Platform:
     def draw(self):
         pygame.draw.rect(self.surface, self.color, ((self.x, self.y), (self.width, self.length)))
 
-Pl1 = Platform(Fl, WHITE, 0,0,200,40)
+Pl1 = Platform(Fl, WHITE, 0,200,200,40)
 Pl1.draw()
 
-Pl2 = Platform(Fl, WHITE, 300, 0, 200, 40)
+Pl2 = Platform(Fl, WHITE, 300, 200, 200, 40)
 Pl2.draw()
 
 screen = pygame.display.set_mode((500,500))
