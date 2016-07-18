@@ -22,16 +22,14 @@ import GameLogic
 while True:
 #Use all events received by pygame
     eventList = pygame.event.get()
-
+    isFalling = True
     for event in eventList:
         print(event)
         if event.type == pygame.QUIT:
             exit()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP: # Still need to make a tru jumping function, more than likely in GameLogic
                 GameLogic.y -= 10
-            elif event.key == pygame.K_DOWN:
-                GameLogic.y += 10
             elif event.key == pygame.K_LEFT:
                 GameLogic.x -= 10
             elif event.key == pygame.K_RIGHT:
@@ -41,10 +39,8 @@ while True:
 
 
 #Dont need, as we have no want for passively continued mvmt
+        
     GameLogic.updateGame()
-
-
-
     GameLogic.draw(screen)
 
     pygame.display.flip()
