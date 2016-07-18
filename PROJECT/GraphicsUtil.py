@@ -1,5 +1,6 @@
 import pygame
 
+
 #Define COLORS
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -13,25 +14,20 @@ GREY = (128,128,128)
 
 
 heroSprite = pygame.Surface((40, 40))
-<<<<<<< HEAD
-Fl = pygame.Surface((450,40))
-#pygame.draw.rect(Fl, WHITE, (0,0,200,40))
-
-pygame.draw.rect(Fl, BLUE, (250,0,200,40))
-=======
-Fl = pygame.Surface((500,150))
-pygame.draw.rect(Fl, WHITE, (0,0,500,40))
-pygame.draw.rect(Fl, BLUE, (200,5, 400, -50))
->>>>>>> origin/master
 pygame.draw.circle(heroSprite, RED, (20,20), 20)
+
+
+Fl = pygame.Surface((500,150))
+#pygame.draw.rect(Fl, BLUE, (250,0,200,40))
+
+test = pygame.Surface((200,40))
+pygame.draw.rect(test, BLUE, (0,0,200,40))
+
 # set_colorkey(<COLOR>) configure <COLOR> to be transparent
 #heroSprite.set_colorkey(BLACK)
 #Fl.set_colorkey(BLACK)
 
 
-
-floor = pygame.Surface((200,100))
-pygame.draw.rect(floor, WHITE, (0,400,200,50))
 
 #Classes begin here
 class Platform:
@@ -51,6 +47,9 @@ class Platform:
 
 Pl1 = Platform(Fl, WHITE, 0,0,200,40)
 Pl1.draw()
+
+Pl2 = Platform(Fl, WHITE, 300, 0, 200, 40)
+Pl2.draw()
 
 
 

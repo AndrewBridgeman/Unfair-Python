@@ -14,7 +14,7 @@ pressLeft = False
 pressRight = False
 pressSpace = False
 
-
+rectList = [Graph.Pl1, Graph.Pl2]
 
 
 # update the game
@@ -33,6 +33,7 @@ def draw(screen):
     # copy the image of hero to the screen at the cordinate of hero
     screen.blit(img, (x, y))
     screen.blit(Fl, (x1,y1))
+    screen.blit(Graph.test, (275,360))
 
 #def jump(#Need work, idk stuff)
 #    pass
