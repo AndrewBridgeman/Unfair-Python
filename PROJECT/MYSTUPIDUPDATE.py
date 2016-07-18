@@ -35,26 +35,14 @@ while True:
                 GameLogic.pressUp = True
 
             elif event.key == pygame.K_LEFT:
-<<<<<<< HEAD
-                if GameLogic.x >= 5 and GameLogic.y != 0:
-                    GameLogic.x -= 10
-                    GameLogic.pressLeft = True
-                if GameLogic.x <= 5 and GameLogic.y != 0:
-=======
                 if GameLogic.x >= 5 and GameLogic.y!=0:
                     GameLogic.x -= 10
                     GameLogic.pressLeft = True
                 if GameLogic.x <=5 and GameLogic.y!=0:
->>>>>>> origin/master
                     GameLogic.pressLeft = False
             elif event.key == pygame.K_RIGHT:
                 GameLogic.x += 10
                 GameLogic.pressRight = True
-            elif event.key == pygame.K_SPACE:
-                GameLogic.y -= 10
-                GameLogic.pressUp = True
-            elif event.key != pygame.K_SPACE:
-                GameLogic.pressUp = False
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP: 
                 GameLogic.pressUp = False
@@ -62,25 +50,6 @@ while True:
                 GameLogic.pressLeft = False
             elif event.key == pygame.K_RIGHT:
                 GameLogic.pressRight = False 
-            elif event.key == pygame.K_SPACE:
-                GameLogic.pressSpace = False
-<<<<<<< HEAD
-=======
-        if GameLogic.pressUp == True and GameLogic.pressRight == True:#######
-                GameLogic.x += 10
-                GameLogic.y -= 10
-        if GameLogic.pressSpace == True and GameLogic.pressRight == True:
-                GameLogic.x += 10
-                GameLogic.y -= 10
-        if GameLogic.pressUp == True and GameLogic.pressLeft == True:
-                GameLogic.x -= 10
-                GameLogic.y -= 10
-        if GameLogic.pressSpace == True and GameLogic.pressLeft == True:
-                GameLogic.x -= 10
-                GameLogic.y -= 10
-
->>>>>>> origin/master
-
         if GameLogic.pressUp == True and GameLogic.pressRight == True:
                 if GameLogic.y>=360:
                     GameLogic.y -= 50
@@ -96,6 +65,13 @@ while True:
                     GameLogic.x -= 20
                 GameLogic.pressUp=True
                 GameLogic.pressLeft = True
+ 
+
+
+                
+
+
+
 
 
 #Dont need, as we have no want for passively continued mvmt
