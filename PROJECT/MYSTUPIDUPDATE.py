@@ -35,9 +35,11 @@ while True:
                 GameLogic.pressUp = True
 
             elif event.key == pygame.K_LEFT:
-                if GameLogic.x >= 5:
+                if GameLogic.x >= 5 and GameLogic.y != 0:
                     GameLogic.x -= 10
-                GameLogic.pressLeft = True
+                    GameLogic.pressLeft = True
+                if GameLogic.x <= 5 and GameLogic.y != 0:
+                    GameLogic.pressLeft = False
             elif event.key == pygame.K_RIGHT:
                 GameLogic.x += 10
                 GameLogic.pressRight = True
@@ -55,24 +57,22 @@ while True:
                 GameLogic.pressRight = False 
             elif event.key == pygame.K_SPACE:
                 GameLogic.pressSpace = False
+
         if GameLogic.pressUp == True and GameLogic.pressRight == True:
-                GameLogic.x += 10
-                GameLogic.y -= 10
-        if GameLogic.pressSpace == True and GameLogic.pressRight == True:
-                GameLogic.x += 10
-                GameLogic.y -= 10
-        if GameLogic.pressUp == True and GameLogic.pressLeft == True:
-                GameLogic.x -= 10
-                GameLogic.y -= 10
-        if GameLogic.pressSpace == True and GameLogic.pressLeft == True:
-                GameLogic.x -= 10
-                GameLogic.y -= 10
-
-
+                if GameLogic.y>=360:
+                    GameLogic.y -= 50
+                if GameLogic.x>=0:
+                    GameLogic.x += 20
+                GameLogic.pressUp = True
+                GameLogic.pressRight = True
                 
-
-
-
+        if GameLogic.pressUp == True and GameLogic.pressLeft == True:
+                if GameLogic.y>=360:
+                    GameLogic.y -= 50
+                if GameLogic.x>=0:
+                    GameLogic.x -= 20
+                GameLogic.pressUp=True
+                GameLogic.pressLeft = True
 
 
 #Dont need, as we have no want for passively continued mvmt

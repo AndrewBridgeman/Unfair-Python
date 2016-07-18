@@ -13,12 +13,71 @@ GREY = (128,128,128)
 
 
 heroSprite = pygame.Surface((40, 40))
-Fl = pygame.Surface((500,150))
-pygame.draw.rect(Fl, WHITE, (0,0,500,40))
+Fl = pygame.Surface((450,40))
+#pygame.draw.rect(Fl, WHITE, (0,0,200,40))
+
+pygame.draw.rect(Fl, BLUE, (250,0,200,40))
 pygame.draw.circle(heroSprite, RED, (20,20), 20)
 # set_colorkey(<COLOR>) configure <COLOR> to be transparent
-heroSprite.set_colorkey(BLACK)
-Fl.set_colorkey(BLACK)
+#heroSprite.set_colorkey(BLACK)
+#Fl.set_colorkey(BLACK)
+
+
+
+floor = pygame.Surface((200,100))
+pygame.draw.rect(floor, WHITE, (0,400,200,50))
+
+#Classes begin here
+class Platform:
+    def __init__(self, surface, color, pointx, pointy, width, length):
+        self.width = width
+        self.length = length
+        self.x = pointx
+        self.y = pointy
+        self.color = color
+        self.surface = surface
+    def getX(self):
+        return self.x
+    def getY(self):
+        return self.y
+    def draw(self):
+        pygame.draw.rect(self.surface, self.color, ((self.x, self.y), (self.width, self.length)))
+
+Pl1 = Platform(Fl, WHITE, 0,0,200,40)
+Pl1.draw()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #---------------------------------------------------------
 #None of this works with this, and I don't feel like getting rid of all of it
@@ -82,7 +141,3 @@ Fl.set_colorkey(BLACK)
 #-----------------------------------------------------------------------#
 #Starting Edits Here#
 #-----------------------------------------------------------------------#
-
-
-floor = pygame.Surface((200,100))
-pygame.draw.rect(floor, WHITE, (0,400,200,50))
