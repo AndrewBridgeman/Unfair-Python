@@ -30,6 +30,7 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP: # Still need to make a tru jumping function, more than likely in GameLogic
                 GameLogic.y -= 10
+                #GameLogic.jump()
             elif event.key == pygame.K_LEFT:
                 GameLogic.x -= 10
             elif event.key == pygame.K_RIGHT:
