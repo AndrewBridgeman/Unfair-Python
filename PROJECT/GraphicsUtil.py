@@ -15,6 +15,7 @@ GREY = (128,128,128)
 heroSprite = pygame.Surface((40, 40))
 Fl = pygame.Surface((500,150))
 pygame.draw.rect(Fl, WHITE, (0,0,500,40))
+pygame.draw.rect(Fl, BLUE, (200,5, 400, -50))
 pygame.draw.circle(heroSprite, RED, (20,20), 20)
 # set_colorkey(<COLOR>) configure <COLOR> to be transparent
 heroSprite.set_colorkey(BLACK)
