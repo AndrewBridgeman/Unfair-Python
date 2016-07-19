@@ -8,12 +8,22 @@ vy = 0
 center = (x,y)
 img = Graph.someLoadedImage
 # Fl = Graph.Fl
-platformList = []
 
 pressUp = False
 pressLeft = False
 pressRight = False
 pressSpace = False
+
+
+platformList = []
+for i in range(len(levelList.level1)):
+    for j in range(len(levelList.level1[i])):
+        if levelList.level1[i][j] == 'P':
+            lvl = Graph.Platform(BLACK, j*40, i*50, 40, 40)
+            platformList.append(lvl)
+        if levelList.level1[i][j] == 'I':
+            other = Graph.Platform(BLUE, j*40, i*50, 40, 40, True)
+            platformList.append(other)
 
 
 # update the game
@@ -45,16 +55,8 @@ def draw(screen):
     screen.blit(img, (x, y))
     # screen.blit(Fl, (0,200))
 
-    for i in range(len(levelList.level1)):
-        for j in range(len(levelList.level1[i])):
-            if levelList.level1[i][j] == 'P':
-                lvl = Graph.Platform(screen, BLACK, j*40, i*50, 40, 40)
-                lvl.draw()
-                platformList.append(lvl)
-            if levelList.level1[i][j] == 'I':
-                other = Graph.Platform(screen, BLUE, j*40, i*50, 40, 40, True)
-                other.draw()
-                platformList.append(other)
+    for p in platformList:
+        p.draw(screen)
 
 isBetween = True
 
