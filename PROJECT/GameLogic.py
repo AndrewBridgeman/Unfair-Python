@@ -8,7 +8,7 @@ vy = 0
 center = (x,y)
 img = Graph.someLoadedImage
 # Fl = Graph.Fl
-
+platformList = []
 
 pressUp = False
 pressLeft = False
@@ -19,9 +19,19 @@ pressSpace = False
 # update the game
 def updateGame():
 	# if you want to assign a global variable in Python, you need to let Python know
-    global vy, y
+    global vy, y, x
     vy += 0.5
     y += vy
+	# if you want to assign a global variable in Python, you need to let Python know
+    heroGrid = (y//50,x//40)
+    for platform in platformList:
+        if heroGrid == (platform.gridX, platform.gridY - 1):
+            print("on plat")
+            if platform.Fall == True:
+                print("fall")
+                y += 10
+        print(platform.gridX, platform.gridY - 1)
+    print(heroGrid)
 
 # A method that does all the drawing for you.
 def draw(screen):
@@ -38,7 +48,13 @@ def draw(screen):
     for i in range(len(levelList.level1)):
         for j in range(len(levelList.level1[i])):
             if levelList.level1[i][j] == 'P':
-                pygame.draw.rect(screen, WHITE, (j*40, i*50, 40,30))
+                lvl = Graph.Platform(screen, BLACK, j*40, i*50, 40, 40)
+                lvl.draw()
+                platformList.append(lvl)
+            if levelList.level1[i][j] == 'I':
+                other = Graph.Platform(screen, BLUE, j*40, i*50, 40, 40, True)
+                other.draw()
+                platformList.append(other)
 
 isBetween = True
 

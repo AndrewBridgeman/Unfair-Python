@@ -20,19 +20,18 @@ GREY = (128,128,128)
 
 #Classes begin here
 class Platform:
-    def __init__(self, surface, color, pointx, pointy, width, length): #Change widht and length
+    def __init__(self, surface, color, pointx, pointy, width, length, Fall = False): #Change widht and length
         self.width = width
         self.length = length
         self.x = pointx
+        self.gridX = pointy//50
         self.y = pointy
+        self.gridY = pointx//40
         self.color = color
         self.surface = surface
+        self.Fall = Fall
     def getX(self):
-        return self.x 
-    def getY(self):
-        return self.y
-    def getL(self):
-        return self.x + self.length
+        self.x = pointx
     def draw(self):
         pygame.draw.rect(self.surface, self.color, ((self.x, self.y), (self.width, self.length)))
 
