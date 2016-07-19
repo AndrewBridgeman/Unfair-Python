@@ -26,7 +26,7 @@ def updateGame():
 # A method that does all the drawing for you.
 def draw(screen):
         #Background 
-    background = pygame.image.load("/Users/BrionnaSlaughter1/Desktop/Python Programming/Python/Unfair-Python/PROJECT/jungle.jpg")
+    background = pygame.image.load("jungle.jpg")
     backgroundTop = screen.get_height() - background.get_height()
     backgroundLeft = screen.get_width()/2 - background.get_width()/2
 

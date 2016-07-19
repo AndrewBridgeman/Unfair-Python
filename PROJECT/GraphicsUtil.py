@@ -51,7 +51,7 @@ class Platform:
 
 
 #Character Surface
-someLoadedImage = pygame.image.load("/Users/BrionnaSlaughter1/Desktop/Python Programming/Python/Unfair-Python/PROJECT/Snake.png")
+someLoadedImage = pygame.image.load("Snake.png")
 someLoadedImage = pygame.transform.scale(someLoadedImage, (80, 60))
 someLoadedImage.set_colorkey(WHITE)
 
