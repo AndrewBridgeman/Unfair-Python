@@ -2,7 +2,7 @@ import pygame
 import GraphicsUtil as Graph
 from GraphicsUtil import *
 
-x = 20
+x = 40
 y = 300
 vy = 0
 center = (x,y)
@@ -30,19 +30,19 @@ for i in range(len(levelList.level1)):
 def updateGame():
 	# if you want to assign a global variable in Python, you need to let Python know
     global vy, y, x
-    vy += 0.5
-    y += vy
-	# if you want to assign a global variable in Python, you need to let Python know
-    heroGrid = (y//50,x//40)
+    # if you want to assign a global variable in Python, you need to let Python know
+    heroGrid = (x//40, y//50)
     for platform in platformList:
-        if heroGrid == (platform.gridX, platform.gridY - 1):
-            print("on plat")
+        print(platform.gridX, platform.gridY)
+        if (heroGrid[0]+2 > platform.gridX and heroGrid[0] < platform.gridX + platform.width) and heroGrid[1] > platform.gridY -2 :
+            vy = 0
             if platform.Fall == True:
                 print("fall")
                 y += 10
-        print(platform.gridX, platform.gridY - 1)
-    print(heroGrid)
-
+        # print(platform.gridX, platform.gridY - 1)
+    y += vy
+    vy += 0.5
+	
 # A method that does all the drawing for you.
 def draw(screen):
         #Background 

@@ -24,9 +24,9 @@ class Platform:
         self.width = width
         self.length = length
         self.x = pointx
-        self.gridX = pointy//50
+        self.gridX = pointx//40
         self.y = pointy
-        self.gridY = pointx//40
+        self.gridY = pointy//50
         self.color = color
         self.Fall = Fall
     def getX(self):
