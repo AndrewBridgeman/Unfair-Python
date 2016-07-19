@@ -10,7 +10,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 #Make a screen of 500x500 resolution
-screen = pygame.display.set_mode((500,500))
+screen = pygame.display.set_mode((1200,500))
 
 #Make the game have the ability to be pressed and held
 pygame.key.set_repeat(50,50)
@@ -24,33 +24,23 @@ while True:
     eventList = pygame.event.get()
     
     for event in eventList:
-        print(event)
         if event.type == pygame.QUIT:
             exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP: # Still need to make a tru jumping function, more than likely in GameLogic
-                if GameLogic.y >= 360:
-                    GameLogic.y -= 100
-                #GameLogic.jump()
+                if GameLogic.y >= 260: #Changed from 360 for testing
+                    GameLogic.y -= 100 # Can continue jumping to fix fall, need that fixed
+                GameLogic.vy = -5
                 GameLogic.pressUp = True
-
+                    
             elif event.key == pygame.K_LEFT:
                 if GameLogic.x >= 5 and GameLogic.y != 0:
                     GameLogic.x -= 10
                     GameLogic.pressLeft = True
                 if GameLogic.x <= 5 and GameLogic.y != 0:
-<<<<<<< HEAD
-                    GameLogic.x
-                    GameLogic.pressLeft=False
-=======
                     GameLogic.pressLeft = False
->>>>>>> origin/master
-                if GameLogic.x >= 5 and GameLogic.y!=0:
-                    GameLogic.x -= 10
-                    GameLogic.pressLeft = True
                 if GameLogic.x <=5 and GameLogic.y!=0:
                     GameLogic.pressLeft = False
-
             elif event.key == pygame.K_RIGHT:
                 GameLogic.x += 10
                 GameLogic.pressRight = True
@@ -61,18 +51,12 @@ while True:
                 GameLogic.pressLeft = False
             elif event.key == pygame.K_RIGHT:
                 GameLogic.pressRight = False 
-<<<<<<< HEAD
-       
-=======
             elif event.key == pygame.K_SPACE:
                 GameLogic.pressSpace = False
-
-
->>>>>>> origin/master
         if GameLogic.pressUp == True and GameLogic.pressRight == True:
-                if GameLogic.y>=360:
+                if GameLogic.y >= 360:
                     GameLogic.y -= 50
-                if GameLogic.x>=0:
+                if GameLogic.x >= 0:
                     GameLogic.x += 20
                 GameLogic.pressUp = True
                 GameLogic.pressRight = True
@@ -84,13 +68,6 @@ while True:
                     GameLogic.x -= 20
                 GameLogic.pressUp=True
                 GameLogic.pressLeft = True
- 
-
-
-                
-
-
-
 
 
 #Dont need, as we have no want for passively continued mvmt
@@ -101,4 +78,3 @@ while True:
     pygame.display.flip()
 
     clock.tick(60)
-
