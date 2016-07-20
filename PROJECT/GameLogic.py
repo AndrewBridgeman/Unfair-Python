@@ -2,11 +2,21 @@ import pygame
 import GraphicsUtil as Graph
 from GraphicsUtil import *
 
+<<<<<<< Updated upstream
 # x = 40
 # y = 300
 # vy = 0
 # center = (x,y)
 # img = Graph.someLoadedImage
+=======
+x = 40
+y = 300
+vy = 0
+center = (x,y)
+img = Graph.someLoadedImage
+img2 = Graph.mongooseImage
+img3 = Graph.flagImage
+>>>>>>> Stashed changes
 # Fl = Graph.Fl
 
 class Hero:
@@ -36,6 +46,9 @@ pressSpace = False
 
 
 platformList = []
+villainList = []
+flagList = []
+spikeList = []
 for i in range(len(levelList.level1)):
     for j in range(len(levelList.level1[i])):
         if levelList.level1[i][j] == 'P':
@@ -44,10 +57,23 @@ for i in range(len(levelList.level1)):
         if levelList.level1[i][j] == 'I':
             other = Graph.Platform(BLUE, j*40, i*50, 40, 40, True)
             platformList.append(other)
+<<<<<<< Updated upstream
 
 def jump():
     if hero.land:
         hero.vy = -10
+=======
+        if levelList.level1[i][j] == 'E':
+            lvl2 = Graph.Villain(j*40,i*50)
+            villainList.append(lvl2)
+        if levelList.level1[i][j] == 'G':
+            lvl3 = Graph.Flag(j*40,i*50)
+            flagList.append(lvl3)
+        if levelList.level1[i][j] == 'S':
+            lvl4 = Graph.Spike(j*40,i*50)
+            spikeList.append(lvl4)
+        
+>>>>>>> Stashed changes
 
 # update the game
 def updateGame():
@@ -71,10 +97,30 @@ def draw(screen):
     # # copy the image of hero to the screen at the cordinate of hero
     screen.blit(hero.img, (hero.x, hero.y))
 
+    screen.blit(Graph.deathSurface,(0,0))
+
     for p in platformList:
         p.draw(screen)
+    for spike in spikeList:
+        spike.draw(screen)
+    for flag in flagList:
+        flag.draw(screen)        
+    for villain in villainList:
+        villain.draw(screen)
+
 
 isBetween = True
+
+def death(someLoadedImage, mongooseImage):
+    for snake, mongoose in [(someLoadedImage, mongooseImage), (mongooseImage, hero)]:
+            if ((isPointInsideRect(snake.left, snake.top, mongooseImage)) or
+               (isPointInsideRect(snake.left, snake.bottom, mongooseImage)) or
+               (isPointInsideRect(snake.right, snake.top, mongooseImage)) or
+              (isPointInsideRect(snake.right, snake.bottom, mongooseImage))):
+              print ("True")
+            else:
+                print ("False")
+
 
 # def Coll(): #Note, if you go under the platform at all, stops falling, need fix
 #     global x,y

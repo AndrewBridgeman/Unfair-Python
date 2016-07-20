@@ -39,6 +39,7 @@ class Platform:
     def getPos(self):
         return (self.x, self.y , self.x + self.width, self.y + self.length)
 
+<<<<<<< Updated upstream
     def checkCollision(self, hero):
         x1, y1, x2, y2 = hero.getPos()
         px1, py1, px2, py2 = self.getPos()
@@ -71,6 +72,16 @@ class Platform:
             hero.x = px2
             return False
         return False
+=======
+deathSurface = pygame.Surface((200,50))
+
+pygame.font.init()
+font = pygame.font.Font(None,36)
+text = font.render ("Total Deaths:",True,(255,0,0))
+deathSurface.blit(text,(0,0))
+deathSurface.set_colorkey(WHITE)
+
+>>>>>>> Stashed changes
 # Pl1 = Platform(Fl, WHITE, 0,350,200,40) #Change width and length
 #Pl1.draw()
 
@@ -84,11 +95,55 @@ class Platform:
 
 #making all of the rectangles based off of the grid
 
+#Spikes
 
-#Character Surface
+#Finish Flag
+flagImage = pygame.image.load("flag.png")
+flagImage = pygame.transform.scale(flagImage,(80,80))
+flagImage.set_colorkey(WHITE)
+
+class Flag:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(flagImage,(self.x,self.y))
+
+#Spikes
+spike = pygame.image.load("spikes.png")
+spike = pygame.transform.scale(spike,(40,50))
+spike.set_colorkey(WHITE)
+
+class Spike:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(spike,(self.x,self.y))
+
+#Villain Surface
+mongooseImage = pygame.image.load("Rikki_Tikki_Tavi.png")
+mongooseImage = pygame.transform.scale(mongooseImage,(60,60))
+mongooseImage.set_colorkey(WHITE)
+
+class Villain:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(mongooseImage,(self.x,self.y))
+
+#Hero Surface
 someLoadedImage = pygame.image.load("Snake.png")
 someLoadedImage = pygame.transform.scale(someLoadedImage, (60, 50))
 someLoadedImage.set_colorkey(WHITE)
+
+class Hero:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(hero,(self.x,self.y))
 
 pygame.display.flip()
 pygame.display.update()
