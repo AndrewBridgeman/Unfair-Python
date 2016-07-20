@@ -33,12 +33,12 @@ def updateGame():
     # if you want to assign a global variable in Python, you need to let Python know
     heroGrid = (x//40, y//50)
     for platform in platformList:
-        print(platform.gridX, platform.gridY)
-        if (heroGrid[0]+2 > platform.gridX and heroGrid[0] < platform.gridX + platform.width) and heroGrid[1] > platform.gridY -2 :
+        # #####print(platform.gridX, platform.gridY)
+        if (heroGrid[0]+2 > platform.gridX and heroGrid[0] < platform.gridX + platform.width) and heroGrid[1] > platform.gridY -2:
             vy = 0
-            if platform.Fall == True:
-                print("fall")
-                y += 10
+            # if platform.Fall == True:
+            #     print("fall")
+            #     y += 10
         # print(platform.gridX, platform.gridY - 1)
     y += vy
     vy += 0.5
@@ -53,7 +53,6 @@ def draw(screen):
     screen.blit(background, (backgroundLeft,backgroundTop))
     # # copy the image of hero to the screen at the cordinate of hero
     screen.blit(img, (x, y))
-    # screen.blit(Fl, (0,200))
 
     for p in platformList:
         p.draw(screen)

@@ -50,7 +50,7 @@ class Platform:
 
 #Character Surface
 someLoadedImage = pygame.image.load("Snake.png")
-someLoadedImage = pygame.transform.scale(someLoadedImage, (80, 60))
+someLoadedImage = pygame.transform.scale(someLoadedImage, (65, 50))
 someLoadedImage.set_colorkey(WHITE)
 
 pygame.display.flip()
