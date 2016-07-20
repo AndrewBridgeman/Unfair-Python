@@ -2,12 +2,32 @@ import pygame
 import GraphicsUtil as Graph
 from GraphicsUtil import *
 
-x = 40
-y = 300
-vy = 0
-center = (x,y)
-img = Graph.someLoadedImage
+# x = 40
+# y = 300
+# vy = 0
+# center = (x,y)
+# img = Graph.someLoadedImage
 # Fl = Graph.Fl
+
+class Hero:
+    def __init__(self):
+        self.x = 40
+        self.y = 300
+        self.img = Graph.someLoadedImage
+        self.vy = 0
+
+    def getPos(self):
+        rect = self.img.get_rect()
+        return (self.x , self.y , self.x + rect.w, self.y + rect.h)
+
+    def update(self):
+        if not self.land:
+            self.y += self.vy
+            self.vy += 0.5
+
+
+
+hero = Hero()
 
 pressUp = False
 pressLeft = False
@@ -19,30 +39,27 @@ platformList = []
 for i in range(len(levelList.level1)):
     for j in range(len(levelList.level1[i])):
         if levelList.level1[i][j] == 'P':
-            lvl = Graph.Platform(BLACK, j*40, i*50, 40, 40)
+            lvl = Graph.Platform(BLACK, j*40, i*50, 200, 40)
             platformList.append(lvl)
         if levelList.level1[i][j] == 'I':
             other = Graph.Platform(BLUE, j*40, i*50, 40, 40, True)
             platformList.append(other)
 
+def jump():
+    if hero.land:
+        hero.vy = -10
 
 # update the game
 def updateGame():
 	# if you want to assign a global variable in Python, you need to let Python know
-    global vy, y, x
-    # if you want to assign a global variable in Python, you need to let Python know
-    heroGrid = (x//40, y//50)
+    hero.land = False
     for platform in platformList:
-        # #####print(platform.gridX, platform.gridY)
-        if (heroGrid[0]+2 > platform.gridX and heroGrid[0] < platform.gridX + platform.width) and heroGrid[1] > platform.gridY -2:
-            vy = 0
-            # if platform.Fall == True:
-            #     print("fall")
-            #     y += 10
-        # print(platform.gridX, platform.gridY - 1)
-    y += vy
-    vy += 0.5
-	
+        hero.land = platform.checkCollision(hero)
+        if hero.land:
+            break
+    print(hero.land)
+    hero.update()
+
 # A method that does all the drawing for you.
 def draw(screen):
         #Background 
@@ -52,7 +69,7 @@ def draw(screen):
 
     screen.blit(background, (backgroundLeft,backgroundTop))
     # # copy the image of hero to the screen at the cordinate of hero
-    screen.blit(img, (x, y))
+    screen.blit(hero.img, (hero.x, hero.y))
 
     for p in platformList:
         p.draw(screen)

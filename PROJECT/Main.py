@@ -17,7 +17,7 @@ pygame.key.set_repeat(50,50)
 
 #Get GameLogic in here
 import GameLogic
-#If you need GraphicsUtil, call as GameLogic.Graph
+#If you need GraphicsUtil, call as GameLogic.hero.Graph
 
 while True:
 #Use all events received by pygame
@@ -28,24 +28,23 @@ while True:
             exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP: # Still need to make a tru jumping function, more than likely in GameLogic
-                # if GameLogic.y >= 260: #Changed from 360 for testing
-                #     GameLogic.y -= 100 # Can continue jumping to fix fall, need that fixed
-                print('fdsafdsaf')
+                # if GameLogic.hero.y >= 260: #Changed from 360 for testing
+                #     GameLogic.hero.y -= 100 # Can continue jumping to fix fall, need that fixed
                 #doesnt like to jump with nothing already, print says it goes through, but no reaction
-                GameLogic.y -= 5
-                GameLogic.vy = -5
+                GameLogic.jump()
                 GameLogic.pressUp = True
-                    
+            elif event.key == pygame.K_DOWN:
+                GameLogic.hero.y += 5
             elif event.key == pygame.K_LEFT:
-                if GameLogic.x >= 5 and GameLogic.y != 0:
-                    GameLogic.x -= 10
+                if GameLogic.hero.x >= 5 and GameLogic.hero.y != 0:
+                    GameLogic.hero.x -= 10
                     GameLogic.pressLeft = True
-                if GameLogic.x <= 5 and GameLogic.y != 0:
+                if GameLogic.hero.x <= 5 and GameLogic.hero.y != 0:
                     GameLogic.pressLeft = False
-                if GameLogic.x <=5 and GameLogic.y!=0:
+                if GameLogic.hero.x <=5 and GameLogic.hero.y!=0:
                     GameLogic.pressLeft = False
             elif event.key == pygame.K_RIGHT:
-                GameLogic.x += 10
+                GameLogic.hero.x += 10
                 GameLogic.pressRight = True
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP: 
@@ -57,18 +56,18 @@ while True:
             elif event.key == pygame.K_SPACE:
                 GameLogic.pressSpace = False
         if GameLogic.pressUp == True and GameLogic.pressRight == True:
-                if GameLogic.y >= 360:
-                    GameLogic.y -= 50
-                if GameLogic.x >= 0:
-                    GameLogic.x += 20
+                if GameLogic.hero.y >= 360:
+                    GameLogic.hero.y -= 50
+                if GameLogic.hero.x >= 0:
+                    GameLogic.hero.x += 20
                 GameLogic.pressUp = True
                 GameLogic.pressRight = True
                 
         if GameLogic.pressUp == True and GameLogic.pressLeft == True:
-                if GameLogic.y>=360:
-                    GameLogic.y -= 50
-                if GameLogic.x>=0:
-                    GameLogic.x -= 20
+                if GameLogic.hero.y>=360:
+                    GameLogic.hero.y -= 50
+                if GameLogic.hero.x>=0:
+                    GameLogic.hero.x -= 20
                 GameLogic.pressUp=True
                 GameLogic.pressLeft = True
 

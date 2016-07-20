@@ -29,11 +29,48 @@ class Platform:
         self.gridY = pointy//50
         self.color = color
         self.Fall = Fall
+
     def getX(self):
         self.x = pointx
+
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, ((self.x, self.y), (self.width, self.length)))
+    
+    def getPos(self):
+        return (self.x, self.y , self.x + self.width, self.y + self.length)
 
+    def checkCollision(self, hero):
+        x1, y1, x2, y2 = hero.getPos()
+        px1, py1, px2, py2 = self.getPos()
+        if x2 <= px1:
+            return False 
+        if x1 >= px2:
+            return False
+        if y2 <= py1:
+            return False
+        if y1 >= py2:
+            return False
+        if y2 == py1:
+            return True
+        if y2 > py1:
+            if x1 >= px1 and x2 <= px2:
+                hero.y = y1 - y2 + py1
+                hero.vy = 0
+                return True
+            d = y2 - py1
+            dleft = x2 - px1
+            dright = px2 - x1
+            if (d < dleft and x1 < px1) or (d < dright and x2 > px2):
+                hero.y = y1 - y2 + py1
+                hero.vy = 0
+                return True
+        if x2 > px1 and x1 < px1:
+            hero.x = x1 - x2 + px1
+            return False
+        if x1 < px2 and x2 > px2:
+            hero.x = px2
+            return False
+        return False
 # Pl1 = Platform(Fl, WHITE, 0,350,200,40) #Change width and length
 #Pl1.draw()
 
@@ -50,7 +87,7 @@ class Platform:
 
 #Character Surface
 someLoadedImage = pygame.image.load("Snake.png")
-someLoadedImage = pygame.transform.scale(someLoadedImage, (65, 50))
+someLoadedImage = pygame.transform.scale(someLoadedImage, (60, 50))
 someLoadedImage.set_colorkey(WHITE)
 
 pygame.display.flip()
