@@ -14,6 +14,7 @@ class Hero:
         self.x = 40
         self.y = 300
         self.img = Graph.someLoadedImage
+        self.jump = False
         self.vy = 0
 
     def getPos(self):
@@ -21,10 +22,19 @@ class Hero:
         return (self.x , self.y , self.x + rect.w, self.y + rect.h)
 
     def update(self):
+        print(self.land, self.jump)
         if not self.land:
             self.y += self.vy
             self.vy += 0.5
-
+            self.jump = False
+        else:
+            if self.jump:
+                self.vy = -10
+                self.y -= 10
+                self.land = False
+            else:
+                self.vy = 0
+            
 
 
 hero = Hero()
@@ -46,8 +56,7 @@ for i in range(len(levelList.level1)):
             platformList.append(other)
 
 def jump():
-    if hero.land:
-        hero.vy = -10
+    hero.jump = True
 
 # update the game
 def updateGame():
@@ -57,7 +66,6 @@ def updateGame():
         hero.land = platform.checkCollision(hero)
         if hero.land:
             break
-    print(hero.land)
     hero.update()
 
 # A method that does all the drawing for you.
