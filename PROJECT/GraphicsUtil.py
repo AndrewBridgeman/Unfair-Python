@@ -62,33 +62,121 @@ class Platform:
                 return True
         if x2 > px1 and x1 < px1:
             hero.x = x1 - x2 + px1
-            print(1)
             return False
         if x1 < px2 and x2 > px2:
             hero.x = px2
-            print(2)
             return False
-        print(3)
         hero.vy = 1
         return False
-# Pl1 = Platform(Fl, WHITE, 0,350,200,40) #Change width and length
-#Pl1.draw()
 
-# Pl2 = Platform(Fl, WHITE, 300, 350, 200, 40)
-#Pl2.draw()
 
-# Pl3 = Platform(Fl, BLUE, 265, 310, 200, 40)
-#Pl3.draw()
 
-# rectList = [Pl1]
+
+
+class invisiblePlatform:
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #making all of the rectangles based off of the grid
 
+#Spikes
 
-#Character Surface
+#Finish Flag
+flagImage = pygame.image.load("flag.png")
+flagImage = pygame.transform.scale(flagImage,(80,80))
+flagImage.set_colorkey(WHITE)
+
+class Flag:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(flagImage,(self.x,self.y))
+
+#Spikes
+spike = pygame.image.load("spikes.png")
+spike = pygame.transform.scale(spike,(40,50))
+spike.set_colorkey(WHITE)
+
+class Spike:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(spike,(self.x,self.y))
+    def getPos(self):
+        return (self.x, self.y, self.x + 40, self.y + 50)
+    def checkCollision(self, hero):
+        x1, y1, x2, y2 = hero.getPos()
+        px1, py1, px2, py2 = self.getPos()
+        if x2 < px1:
+            return False 
+        if x2 == px1 and y2 >= py1 and y2 <= py2: #If char is not above platform, dies. need to fix soon
+            return True
+        if x1 >= px1 and x2 <= px2 and y2 >= py1 and y2 <= py2: #Made it slower as i got in the same area as it? idk
+            #This part is broken, working on a fix now, dont worry
+            return True
+        if y2 < py1:
+            return False
+        if y1 >= py2:
+            return False
+        if y2 >= py1 and y1 < py1:
+            if x1 >= px1 and x2 <= px2:
+                hero.y = y1 - y2 + py1
+                return True
+            d = y2 - py1
+            dleft = x2 - px1
+            dright = px2 - x1
+            if (d < dleft and x1 < px1) or (d < dright and x2 > px2):
+                hero.y = y1 - y2 + py1
+                return True
+        if x2 > px1 and x1 < px1:
+            hero.x = x1 - x2 + px1
+            return False
+        if x1 < px2 and x2 > px2:
+            hero.x = px2
+            return False
+        hero.vy = 1
+        return False
+
+
+    
+
+#Villain Surface
+mongooseImage = pygame.image.load("Rikki_Tikki_Tavi.png")
+mongooseImage = pygame.transform.scale(mongooseImage,(60,60))
+mongooseImage.set_colorkey(WHITE)
+
+class Villain:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(mongooseImage,(self.x,self.y))
+
+#Hero Surface
 someLoadedImage = pygame.image.load("Snake.png")
 someLoadedImage = pygame.transform.scale(someLoadedImage, (60, 50))
 someLoadedImage.set_colorkey(WHITE)
+
+# class Hero:
+#     def __init__(self,x,y):
+#         self.x = x
+#         self.y = y
+#     def draw(self,screen):
+#         screen.blit(hero,(self.x,self.y))
 
 pygame.display.flip()
 pygame.display.update()

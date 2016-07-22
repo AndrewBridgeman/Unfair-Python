@@ -28,10 +28,8 @@ while True:
             exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP: # Still need to make a tru jumping function, more than likely in GameLogic
-                # if GameLogic.hero.y >= 260: #Changed from 360 for testing
-                #     GameLogic.hero.y -= 100 # Can continue jumping to fix fall, need that fixed
                 #doesnt like to jump with nothing already, print says it goes through, but no reaction
-                GameLogic.jump()
+                GameLogic.hero.jump = True
                 GameLogic.pressUp = True
             elif event.key == pygame.K_DOWN:
                 GameLogic.hero.y += 5
