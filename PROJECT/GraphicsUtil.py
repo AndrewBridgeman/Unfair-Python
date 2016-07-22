@@ -123,10 +123,9 @@ class Spike:
         px1, py1, px2, py2 = self.getPos()
         if x2 < px1:
             return False 
-        if x2 == px1 and y2 >= py1 and y2 <= py2: #If char is not above platform, dies. need to fix soon
+        if x2 == px1 and y2 >= py1 and y2 <= py2:
             return True
-        if x1 >= px1 and x2 <= px2 and y2 >= py1 and y2 <= py2: #Made it slower as i got in the same area as it? idk
-            #This part is broken, working on a fix now, dont worry
+        if x1 == px2 and y2 <= py2 and y1 >= py1:
             return True
         if y2 < py1:
             return False
@@ -148,7 +147,6 @@ class Spike:
         if x1 < px2 and x2 > px2:
             hero.x = px2
             return False
-        hero.vy = 1
         return False
 
 
@@ -165,6 +163,39 @@ class Villain:
         self.y = y
     def draw(self,screen):
         screen.blit(mongooseImage,(self.x,self.y))
+    def getPos(self):
+        return (self.x + 10, self.y, self.x + 50, self.y + 60)
+    def checkCollision(self, hero):
+        x1, y1, x2, y2 = hero.getPos()
+        px1, py1, px2, py2 = self.getPos()
+        if x2 < px1:
+            return False 
+        if x2 == px1 and y2 >= py1 and y2 <= py2:
+            return True
+        if x1 == px2 and y2 <= py2 and y1 >= py1:
+            return True
+        if y2 < py1:
+            return False
+        if y1 >= py2:
+            return False
+        if y2 >= py1 and y1 < py1:
+            if x1 >= px1 and x2 <= px2:
+                hero.y = y1 - y2 + py1
+                return True
+            d = y2 - py1
+            dleft = x2 - px1
+            dright = px2 - x1
+            if (d < dleft and x1 < px1) or (d < dright and x2 > px2):
+                hero.y = y1 - y2 + py1
+                return True
+        if x2 > px1 and x1 < px1:
+            hero.x = x1 - x2 + px1
+            return False
+        if x1 < px2 and x2 > px2:
+            hero.x = px2
+            return False
+        return False
+
 
 #Hero Surface
 someLoadedImage = pygame.image.load("Snake.png")

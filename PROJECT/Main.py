@@ -42,8 +42,11 @@ while True:
                 if GameLogic.hero.x <=5 and GameLogic.hero.y!=0:
                     GameLogic.pressLeft = False
             elif event.key == pygame.K_RIGHT:
-                GameLogic.hero.x += 10
-                GameLogic.pressRight = True
+                if GameLogic.hero.x <= 1130 and GameLogic.hero.y != 0:
+                    GameLogic.hero.x += 10
+                    GameLogic.pressRight = True
+                if GameLogic.hero.x > 1130 and GameLogic.hero.y != 0:
+                    GameLogic.pressRight = False
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP: 
                 GameLogic.pressUp = False

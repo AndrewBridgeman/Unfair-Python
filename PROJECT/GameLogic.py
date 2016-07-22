@@ -26,6 +26,7 @@ class Hero:
 
     def update(self):
         global deathVar
+        #Landing Function
         if not self.land:
             self.y += self.vy
             self.vy += 0.5
@@ -37,12 +38,25 @@ class Hero:
                 self.land = False
             else:
                 self.vy = 0
+
+        #Death Function
         if not self.death:
             pass
         else:
             self.x,self.y = 40, 300
-            deathVar += 1 
-            print("Worked")
+            deathVar += 1
+
+        if not self.villianDeath:
+            pass
+        else:
+            self.x, self.y = 40,300
+            deathVar += 1
+
+        #Falling to death
+        if hero.y >= 500:
+            hero.x, hero.y = 40, 300
+            deathVar += 1
+        
 hero = Hero()
 
 pressUp = False
@@ -89,6 +103,10 @@ def updateGame():
     hero.death = False
     for spike in spikeList:
         hero.death = spike.checkCollision(hero)
+        if hero.death:
+            break
+    for villain in villainList:
+        hero.villianDeath = villain.checkCollision(hero)
         if hero.death:
             break
     hero.update()
