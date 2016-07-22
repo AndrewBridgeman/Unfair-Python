@@ -26,14 +26,15 @@ class Hero:
 
     def update(self):
         global deathVar
+        global vy
         #Landing Function
         if not self.land:
             self.y += self.vy
-            self.vy += 0.5
+            self.vy += 1.0 #gravity
             self.jump = False
         else:
             if self.jump:
-                self.vy = -10
+                self.vy = -15
                 self.y -= 10
                 self.land = False
             else:
@@ -52,6 +53,7 @@ class Hero:
             self.x, self.y = 40,300
             deathVar += 1
 
+       
         #Falling to death
         if hero.y >= 500:
             hero.x, hero.y = 40, 300
@@ -69,15 +71,15 @@ platformList = []
 villainList = []
 flagList = []
 spikeList = []
+invisList = []
 for i in range(len(levelList.level1)):
     for j in range(len(levelList.level1[i])):
         if levelList.level1[i][j] == 'P':
             lvl = Graph.Platform(BLACK, j*40, i*50, 200, 40)
             platformList.append(lvl)
         if levelList.level1[i][j] == 'I':
-            other = Graph.Platform(BLUE, j*40, i*50, 40, 40, True)
-            platformList.append(other)
-
+            other = Graph.Platform(BLUE, j*40, i*50, 120, 40, True)
+            invisList.append(other)
 
         if levelList.level1[i][j] == 'E':
             lvl2 = Graph.Villain(j*40,i*50)
@@ -109,7 +111,13 @@ def updateGame():
         hero.villianDeath = villain.checkCollision(hero)
         if hero.death:
             break
+    # for other in invisList:
+    #     hero.onInvis = other.checkCollision(hero)
+    #     if hero.onInvis:
+    #         break
     hero.update()
+
+    
 
 # A method that does all the drawing for you.
 def draw(screen):
@@ -137,26 +145,5 @@ def draw(screen):
         flag.draw(screen)        
     for villain in villainList:
         villain.draw(screen)
-
-
-isBetween = True
-
-
-
-class death:
-    pass
-
-
-
-    deathVar += 1
-# def death(someLoadedImage, mongooseImage):
-#     for snake, mongoose in [(someLoadedImage, mongooseImage), (mongooseImage, hero)]:
-#             if ((isPointInsideRect(snake.left, snake.top, mongooseImage)) or
-#                (isPointInsideRect(snake.left, snake.bottom, mongooseImage)) or
-#                (isPointInsideRect(snake.right, snake.top, mongooseImage)) or
-#               (isPointInsideRect(snake.right, snake.bottom, mongooseImage))):
-#               print ("True")
-#             else:
-#                 print ("False")
-
-
+    for other in invisList:
+        other.draw(screen)
