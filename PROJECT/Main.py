@@ -57,20 +57,21 @@ while True:
             elif event.key == pygame.K_SPACE:
                 GameLogic.pressSpace = False
         if GameLogic.pressUp == True and GameLogic.pressRight == True:
-                if GameLogic.hero.y >= 360:
-                    GameLogic.hero.y -= 50
+                # if GameLogic.hero.y >= 360:
+                #     GameLogic.hero.y -= 50
                 if GameLogic.hero.x >= 0:
-                    GameLogic.hero.x += 20
+                    GameLogic.hero.x += 0
                 GameLogic.pressUp = True
                 GameLogic.pressRight = True
-                
+
         if GameLogic.pressUp == True and GameLogic.pressLeft == True:
-                if GameLogic.hero.y>=360:
-                    GameLogic.hero.y -= 50
+                # if GameLogic.hero.y>=360:
+                #     GameLogic.hero.y -= 50
                 if GameLogic.hero.x>=0:
-                    GameLogic.hero.x -= 20
+                    GameLogic.hero.x -= 1
                 GameLogic.pressUp=True
                 GameLogic.pressLeft = True
+
 
 
 #Dont need, as we have no want for passively continued mvmt

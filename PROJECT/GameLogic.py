@@ -66,7 +66,6 @@ pressLeft = False
 pressRight = False
 pressSpace = False
 
-
 platformList = []
 villainList = []
 flagList = []
@@ -76,10 +75,10 @@ colList = []
 for i in range(len(levelList.level1)):
     for j in range(len(levelList.level1[i])):
         if levelList.level1[i][j] == 'P':
-            lvl = Graph.Platform(BLACK, j*40, i*50, 170, 40)
+            lvl = Graph.Platform(BLACK, j*40, i*50, 40, 50)
             platformList.append(lvl)
         if levelList.level1[i][j] == 'I':
-            other = Graph.Platform(BLUE, j*40, i*50, 150, 40, True)
+            other = Graph.Platform(BLUE, j*40, i*50, 120, 50, True)
             invisList.append(other)
 
         if levelList.level1[i][j] == 'E':
