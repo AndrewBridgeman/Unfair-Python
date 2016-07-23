@@ -236,5 +236,18 @@ someLoadedImage.set_colorkey(WHITE)
 #     def draw(self,screen):
 #         screen.blit(hero,(self.x,self.y))
 
+# class Col:
+#     def __init__(self,x,y,color,w,h):
+#         self.x = x
+#         self.y = y
+#         self.color = color
+#         self.w = width
+#         self.h = height
+#     def draw(self, screen):
+#          pygame.draw.rect(screen, self.color, self.x,self.y, self.w, self.h)
+
+
+
+    
 pygame.display.flip()
 pygame.display.update()

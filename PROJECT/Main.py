@@ -20,7 +20,7 @@ import GameLogic
 #If you need GraphicsUtil, call as GameLogic.hero.Graph
 
 while True:
-#Use all events received by pygame
+#Use all events received by pygameB
     eventList = pygame.event.get()
     
     for event in eventList:

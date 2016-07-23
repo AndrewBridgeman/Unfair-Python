@@ -72,13 +72,14 @@ villainList = []
 flagList = []
 spikeList = []
 invisList = []
+colList = []
 for i in range(len(levelList.level1)):
     for j in range(len(levelList.level1[i])):
         if levelList.level1[i][j] == 'P':
-            lvl = Graph.Platform(BLACK, j*40, i*50, 200, 40)
+            lvl = Graph.Platform(BLACK, j*40, i*50, 170, 40)
             platformList.append(lvl)
         if levelList.level1[i][j] == 'I':
-            other = Graph.Platform(BLUE, j*40, i*50, 120, 40, True)
+            other = Graph.Platform(BLUE, j*40, i*50, 150, 40, True)
             invisList.append(other)
 
         if levelList.level1[i][j] == 'E':
@@ -90,6 +91,9 @@ for i in range(len(levelList.level1)):
         if levelList.level1[i][j] == 'S':
             lvl4 = Graph.Spike(j*40,i*50)
             spikeList.append(lvl4)
+        # if levelList.level1[i][j] == 'Y':
+        #     lvl5 = Graph.Col(j*40, i*50, BLACK,40, 130)
+        #     colList.append(lvl5)
         
 
 
@@ -147,3 +151,5 @@ def draw(screen):
         villain.draw(screen)
     for other in invisList:
         other.draw(screen)
+    for col in colList:
+        col.draw(screen)
