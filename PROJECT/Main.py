@@ -25,8 +25,8 @@ import GameLogic
     
 
         
-pygame.mixer.music.load("Epic.mp3")
-pygame.mixer.music.play(-1,0.0)
+# pygame.mixer.music.load("Epic.mp3")
+# pygame.mixer.music.play(-1,0.0)
 
 while True:
 #Use all events received by pygameB

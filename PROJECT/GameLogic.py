@@ -150,7 +150,11 @@ def draw(screen):
         mainMenu.set_colorkey(Graph.WHITE)
         pygame.font.init()
         screen.blit(mainMenu, (350,0))
-
+        font = pygame.font.Font(None, 36)
+        text1 = font.render ("Start Game", True, (255,0,0))
+        screen.blit(text1,(59,238))
+        text2 = font.render ("Exit", True, (255,0,0))
+        screen.blit(text2, (1000, 238))
         startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
         endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
 
