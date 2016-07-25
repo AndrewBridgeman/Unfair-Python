@@ -82,7 +82,7 @@ for i in range(len(levelList.level1)):
             lvl = Graph.Platform(BLACK, j*40, i*50, 40, 50)
             platformList.append(lvl)
         if levelList.level1[i][j] == 'I':
-            other = Graph.Platform(BLUE, j*40, i*50, 120, 50, True)
+            other = Graph.Platform(BLACK, j*40, i*50, 120, 50, True)
             invisList.append(other)
 
         if levelList.level1[i][j] == 'E':
@@ -129,38 +129,38 @@ def updateGame():
 # A method that does all the drawing for you.
 def draw(screen):
     global deathVar
-    if state == 'Main Menu':
-        mainMenu = pygame.image.load('python.jpg')
-        mainMenu = pygame.transform.scale(mainMenu, (300,300))
-        mainMenu.set_colorkey(Graph.WHITE)
-        pygame.font.init()
-        screen.blit(mainMenu, (100,100))
+    # if state == 'Main Menu':
+    #     mainMenu = pygame.image.load('python.jpg')
+    #     mainMenu = pygame.transform.scale(mainMenu, (300,300))
+    #     mainMenu.set_colorkey(Graph.WHITE)
+    #     pygame.font.init()
+    #     screen.blit(mainMenu, (100,100))
 
-    else:
+    # else:
             #Background 
-        background = pygame.image.load("jungle.jpg")
-        backgroundTop = screen.get_height() - background.get_height()
-        backgroundLeft = screen.get_width()/2 - background.get_width()/2
+    background = pygame.image.load("jungle.jpg")
+    backgroundTop = screen.get_height() - background.get_height()
+    backgroundLeft = screen.get_width()/2 - background.get_width()/2
 
-        screen.blit(background, (backgroundLeft,backgroundTop))
+    screen.blit(background, (backgroundLeft,backgroundTop))
         # # copy the image of hero to the screen at the cordinate of hero
-        screen.blit(hero.img, (hero.x, hero.y))
+    screen.blit(hero.img, (hero.x, hero.y))
         
         # Text
-        pygame.font.init()
-        font = pygame.font.Font(None,36)
-        text = font.render ("Total Deaths: " + str(deathVar),True,(255,0,0))
-        screen.blit(text,(1,1))
+    pygame.font.init()
+    font = pygame.font.Font(None,36)
+    text = font.render ("Total Deaths: " + str(deathVar),True,(255,0,0))
+    screen.blit(text,(1,1))
 
-        for p in platformList:
-            p.draw(screen)
-        for spike in spikeList:
-            spike.draw(screen)
-        for flag in flagList:
-            flag.draw(screen)        
-        for villain in villainList:
-            villain.draw(screen)
-        for other in invisList:
-            other.draw(screen)
-        for col in colList:
-            col.draw(screen)
+    for p in platformList:
+        p.draw(screen)
+    for spike in spikeList:
+        spike.draw(screen)
+    for flag in flagList:
+        flag.draw(screen)        
+    for villain in villainList:
+        villain.draw(screen)
+    for other in invisList:
+        other.draw(screen)
+    for col in colList:
+        col.draw(screen)
