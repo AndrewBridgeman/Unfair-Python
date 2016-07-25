@@ -80,8 +80,9 @@ class invisiblePlatform:
         self.width= width
         self.length = length
     def draw(self,screen):
+
         screen.blit(grassImage,(self.x,self.y))
-        print ("good")
+    
     def getPos(self):
         return (self.x, self.y , self.x + self.width, self.y + self.length)
     
@@ -113,6 +114,11 @@ class invisiblePlatform:
     #         hero.x = px2
     #         return False
     #     return False
+
+        screen.blit(screen,(((self.x, self.y), (self.width, self.length))))
+    def getPos(self):
+        return (self.x, self.y , self.x + self.width, self.y + self.length)
+
 
 
 

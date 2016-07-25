@@ -170,7 +170,7 @@ def draw(screen):
 
 
 
-    elif state == 'level1':
+    elif state == 'grid':
             #Background 
         background = pygame.image.load("jungle.jpg")
         backgroundTop = screen.get_height() - background.get_height()
