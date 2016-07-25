@@ -16,6 +16,9 @@ GREY = (128,128,128)
 
 
 #Classes begin here
+grassImage = pygame.image.load("grass.jpg")
+grassImage = pygame.transform.scale(grassImage,(50,50))
+grassImage.set_colorkey(WHITE)
 class Platform:
     def __init__(self, color, pointx, pointy, width, length, Fall = False): #Change widht and length
         self.width = width
@@ -31,8 +34,7 @@ class Platform:
         self.x = pointx
 
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, ((self.x, self.y), (self.width, self.length)))
-    
+        screen.blit(grassImage,(self.x,self.y))
     def getPos(self):
         return (self.x, self.y , self.x + self.width, self.y + self.length)
 
@@ -66,20 +68,23 @@ class Platform:
         hero.vy = 1
         return False
 
-
-
-
+grassImage = pygame.image.load("grass.jpg")
+grassImage = pygame.transform.scale(grassImage,(50,50))
+grassImage.set_colorkey(WHITE)
 
 class invisiblePlatform:
-    def __init__(self):
-        self.x = x
-        self.y = y
+    def __init__(self,color,pointx,pointy,width,length):
+        self.x = pointx
+        self.y = pointy
+        self.color = color
+        self.width= width
+        self.length = length
     def draw(self,screen):
-        screen.blit(screen,(((self.x, self.y), (self.width, self.length))))
-
+        screen.blit(grassImage,(self.x,self.y))
+        print ("good")
     def getPos(self):
         return (self.x, self.y , self.x + self.width, self.y + self.length)
-
+    
     # def checkCollision(self, hero):
     #     x1, y1, x2, y2 = hero.getPos()
     #     px1, py1, px2, py2 = self.getPos()
