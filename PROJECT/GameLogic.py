@@ -68,6 +68,14 @@ class Hero:
         if hero.y >= 500:
             hero.x, hero.y = 40, 300
             deathVar += 1
+
+        #Lvl End
+        if not self.getEnd:
+            pass
+        else:
+            self.x, self.y = 40, 300
+
+ 
         
 hero = Hero()
 
@@ -122,6 +130,10 @@ def updateGame():
             break
     for villain in villainList:
         hero.villianDeath = villain.checkCollision(hero)
+        if hero.death:
+            break
+    for flag in flagList:
+        hero.getEnd = flag.checkCollision(hero)
         if hero.death:
             break
     hero.update()
