@@ -115,7 +115,6 @@ def createGame(grid):
             #     lvl5 = Graph.Col(j*40, i*50, BLACK,40, 130)
             #     colList.append(lvl5)
 
-createGame(levelList.level1)
             
 
 

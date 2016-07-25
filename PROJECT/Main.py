@@ -65,12 +65,12 @@ while True:
             if GameLogic.state == 'Main Menu':
                 if event.pos[0] >= GameLogic.btnX and event.pos[0] <= GameLogic.btnX + GameLogic.btnWidth and event.pos[1] >= GameLogic.btnY and event.pos[1] <= GameLogic.btnY + GameLogic.btnHeight:
                     GameLogic.state = 'Start'
+                    GameLogic.createGame(GameLogic.levelList.level1)
                 if event.pos[0] >= GameLogic.btnX1 and event.pos[0] <= GameLogic.btnX1 + GameLogic.btnWidth1 and event.pos[1] >= GameLogic.btnY1 and event.pos[1] <= GameLogic.btnY1 + GameLogic.btnHeight1:
-                    print('fdfd')
                     exit()
-                    
                 if event.pos[0]>=GameLogic.btnX2 and event.pos[0]<=GameLogic.btnX2 + GameLogic.btnWidth1 and event.pos[1] >=GameLogic.btnY2 and event.pos[1]<=GameLogic.btnY2+ GameLogic.btnHeight1:
                     GameLogic.state = 'Easy'
+                    GameLogic.createGame(GameLogic.levelList.easylevel)
         if GameLogic.pressUp == True and GameLogic.pressRight == True:
                 # if GameLogic.hero.y >= 360:
                 #     GameLogic.hero.y -= 50
