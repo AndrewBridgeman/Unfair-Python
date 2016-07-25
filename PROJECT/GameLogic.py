@@ -12,6 +12,10 @@ img2 = Graph.mongooseImage
 img3 = Graph.flagImage
 # Fl = Graph.Fl
 
+state = 'Main Menu'
+
+
+
 class Hero:
     def __init__(self):
         self.x = 40
@@ -125,30 +129,38 @@ def updateGame():
 # A method that does all the drawing for you.
 def draw(screen):
     global deathVar
-        #Background 
-    background = pygame.image.load("jungle.jpg")
-    backgroundTop = screen.get_height() - background.get_height()
-    backgroundLeft = screen.get_width()/2 - background.get_width()/2
+    if state == 'Main Menu':
+        mainMenu = pygame.image.load('python.jpg')
+        mainMenu = pygame.transform.scale(mainMenu, (300,300))
+        mainMenu.set_colorkey(Graph.WHITE)
+        pygame.font.init()
+        screen.blit(mainMenu, (100,100))
 
-    screen.blit(background, (backgroundLeft,backgroundTop))
-    # # copy the image of hero to the screen at the cordinate of hero
-    screen.blit(hero.img, (hero.x, hero.y))
-    
-    # Text
-    pygame.font.init()
-    font = pygame.font.Font(None,36)
-    text = font.render ("Total Deaths: " + str(deathVar),True,(255,0,0))
-    screen.blit(text,(1,1))
+    else:
+            #Background 
+        background = pygame.image.load("jungle.jpg")
+        backgroundTop = screen.get_height() - background.get_height()
+        backgroundLeft = screen.get_width()/2 - background.get_width()/2
 
-    for p in platformList:
-        p.draw(screen)
-    for spike in spikeList:
-        spike.draw(screen)
-    for flag in flagList:
-        flag.draw(screen)        
-    for villain in villainList:
-        villain.draw(screen)
-    for other in invisList:
-        other.draw(screen)
-    for col in colList:
-        col.draw(screen)
+        screen.blit(background, (backgroundLeft,backgroundTop))
+        # # copy the image of hero to the screen at the cordinate of hero
+        screen.blit(hero.img, (hero.x, hero.y))
+        
+        # Text
+        pygame.font.init()
+        font = pygame.font.Font(None,36)
+        text = font.render ("Total Deaths: " + str(deathVar),True,(255,0,0))
+        screen.blit(text,(1,1))
+
+        for p in platformList:
+            p.draw(screen)
+        for spike in spikeList:
+            spike.draw(screen)
+        for flag in flagList:
+            flag.draw(screen)        
+        for villain in villainList:
+            villain.draw(screen)
+        for other in invisList:
+            other.draw(screen)
+        for col in colList:
+            col.draw(screen)

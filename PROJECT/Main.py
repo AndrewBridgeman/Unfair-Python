@@ -19,6 +19,19 @@ pygame.key.set_repeat(50,50)
 import GameLogic
 #If you need GraphicsUtil, call as GameLogic.hero.Graph
 
+
+    
+# if state == 'Main Menu':
+#     mainMenu = pygame.image.load('python.jpg')
+#     mainMenu = pygame.transform.scale(mainMenu, (300,300))
+#     mainMenu.set_colorkey(Graph.WHITE)
+#     pygame.font.init()
+#     GameLogic.draw(screen)
+
+#     pygame.display.flip()
+        
+
+
 while True:
 #Use all events received by pygameB
     eventList = pygame.event.get()
