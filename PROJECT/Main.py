@@ -11,7 +11,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 #Make a screen of 1200x500 resolution
-
+ 
 screen = pygame.display.set_mode((1200,500))
 
 #Make the game have the ability to be pressed and held
