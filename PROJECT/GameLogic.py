@@ -37,6 +37,7 @@ class Hero:
     def update(self):
         global deathVar
         global vy
+        global state
         #Landing Function
         if not self.land:
             self.y += self.vy
@@ -63,7 +64,6 @@ class Hero:
             self.x, self.y = 40,300
             deathVar += 1
 
-       
         #Falling to death
         if hero.y >= 500:
             hero.x, hero.y = 40, 300
@@ -71,9 +71,13 @@ class Hero:
 
         #Lvl End
         if not self.getEnd:
-            pass
+            state == 'Level2'
         else:
-            self.x, self.y = 40, 300
+            state = 'Level2'
+
+            # if state == 'level1':
+            #     state = 'level2'
+            #     print('sdfa')
 
  
         
@@ -90,27 +94,52 @@ flagList = []
 spikeList = []
 invisList = []
 colList = []
-for i in range(len(levelList.level1)):
-    for j in range(len(levelList.level1[i])):
-        if levelList.level1[i][j] == 'P':
-            lvl = Graph.Platform(BLACK, j*40, i*50, 40, 50)
-            platformList.append(lvl)
-        if levelList.level1[i][j] == 'I':
-            other = Graph.Platform(BLACK, j*40, i*50, 120, 50, True)
-            invisList.append(other)
 
-        if levelList.level1[i][j] == 'E':
-            lvl2 = Graph.Villain(j*40,i*50)
-            villainList.append(lvl2)
-        if levelList.level1[i][j] == 'G':
-            lvl3 = Graph.Flag(j*40,i*50)
-            flagList.append(lvl3)
-        if levelList.level1[i][j] == 'S':
-            lvl4 = Graph.Spike(j*40,i*50)
-            spikeList.append(lvl4)
-        # if levelList.level1[i][j] == 'Y':
-        #     lvl5 = Graph.Col(j*40, i*50, BLACK,40, 130)
-        #     colList.append(lvl5)
+# for i in range(len(levelList.level1)):
+#     for j in range(len(levelList.level1[i])):
+#         if levelList.level1[i][j] == 'P':
+#             lvl = Graph.Platform(BLACK, j*40, i*50, 40, 50)
+#             platformList.append(lvl)
+#         if levelList.level1[i][j] == 'I':
+#             other = Graph.Platform(BLACK, j*40, i*50, 120, 50, True)
+#             invisList.append(other)
+#         if levelList.level1[i][j] == 'E':
+#             lvl2 = Graph.Villain(j*40,i*50)
+#             villainList.append(lvl2)
+#         if levelList.level1[i][j] == 'G':
+#             lvl3 = Graph.Flag(j*40,i*50)
+#             flagList.append(lvl3)
+#         if levelList.level1[i][j] == 'S':
+#             lvl4 = Graph.Spike(j*40,i*50)
+#             spikeList.append(lvl4)
+
+def createGame(grid):
+    global platformList, villainList, flagList, spikeList, invisList, colList
+    platformList = []
+    villainList = []
+    flagList = []
+    spikeList = []
+    invisList = []
+    colList = []
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if grid[i][j] == 'P':
+                lvl = Graph.Platform(BLACK, j*40, i*50, 40, 50)
+                platformList.append(lvl)
+            if grid[i][j] == 'I':
+                other = Graph.Platform(BLACK, j*40, i*50, 120, 50, True)
+                invisList.append(other)
+            if grid[i][j] == 'E':
+                lvl2 = Graph.Villain(j*40,i*50)
+                villainList.append(lvl2)
+            if grid[i][j] == 'G':
+                lvl3 = Graph.Flag(j*40,i*50)
+                flagList.append(lvl3)
+            if grid[i][j] == 'S':
+                lvl4 = Graph.Spike(j*40,i*50)
+                spikeList.append(lvl4)
+
+createGame(levelList.level1)
         
 
 
@@ -128,10 +157,12 @@ def updateGame():
         hero.death = spike.checkCollision(hero)
         if hero.death:
             break
+    hero.villianDeath = False 
     for villain in villainList:
         hero.villianDeath = villain.checkCollision(hero)
         if hero.death:
             break
+    hero.getEnd = False
     for flag in flagList:
         hero.getEnd = flag.checkCollision(hero)
         if hero.death:
@@ -160,7 +191,7 @@ def draw(screen):
 
 
 
-    else:
+    elif state == 'level1':
             #Background 
         background = pygame.image.load("jungle.jpg")
         backgroundTop = screen.get_height() - background.get_height()
@@ -186,5 +217,5 @@ def draw(screen):
             villain.draw(screen)
         for other in invisList:
             other.draw(screen)
-        for col in colList:
-            col.draw(screen)
+    elif state == 'level2':
+        print('Eureka')
