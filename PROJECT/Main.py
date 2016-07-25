@@ -21,8 +21,8 @@ pygame.key.set_repeat(50,50)
 import GameLogic
 #If you need GraphicsUtil, call as GameLogic.hero.Graph
         
-pygame.mixer.music.load("Epic.mp3")
-pygame.mixer.music.play(-1,0.0)
+# pygame.mixer.music.load("Epic.mp3")
+# pygame.mixer.music.play(-1,0.0)
 
 while True:
 #Use all events received by pygameB
@@ -64,9 +64,11 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if GameLogic.state == 'Main Menu':
                 if event.pos[0] >= GameLogic.btnX and event.pos[0] <= GameLogic.btnX + GameLogic.btnWidth and event.pos[1] >= GameLogic.btnY and event.pos[1] <= GameLogic.btnY + GameLogic.btnHeight:
-                    GameLogic.state = 'level1'
+                    GameLogic.state = 'Start'
                 if event.pos[0] >= GameLogic.btnX1 and event.pos[0] <= GameLogic.btnX1 + GameLogic.btnWidth1 and event.pos[1] >= GameLogic.btnY1 and event.pos[1] <= GameLogic.btnY1 + GameLogic.btnHeight1:
+                    print('fdfd')
                     exit()
+                    
                 if event.pos[0]>=GameLogic.btnX2 and event.pos[0]<=GameLogic.btnX2 + GameLogic.btnWidth1 and event.pos[1] >=GameLogic.btnY2 and event.pos[1]<=GameLogic.btnY2+ GameLogic.btnHeight1:
                     GameLogic.state = 'Easy'
         if GameLogic.pressUp == True and GameLogic.pressRight == True:

@@ -95,27 +95,27 @@ invisList = []
 colList = []
 def createGame(grid):
     for i in range(len(grid)):
-        for j in range(len(levelList.grid[i])):
-            if levelList.grid[i][j] == 'P':
+        for j in range(len(grid[i])):
+            if grid[i][j] == 'P':
                 lvl = Graph.Platform(BLUE, j*40, i*50, 40, 50)
                 platformList.append(lvl)
-            if levelList.grid[i][j] == 'I':
+            if grid[i][j] == 'I':
                 other = Graph.invisiblePlatform(BLACK,j*40, i*50, 120, 50)
                 invisList.append(other)
-            if levelList.grid[i][j] == 'E':
+            if grid[i][j] == 'E':
                 lvl2 = Graph.Villain(j*40,i*50)
                 villainList.append(lvl2)
-            if levelList.grid[i][j] == 'G':
+            if grid[i][j] == 'G':
                 lvl3 = Graph.Flag(j*40,i*50)
                 flagList.append(lvl3)
-            if levelList.grid[i][j] == 'S':
+            if grid[i][j] == 'S':
                 lvl4 = Graph.Spike(j*40,i*50)
                 spikeList.append(lvl4)
-            # if levelList.grid[i][j] == 'Y':
+            # if grid[i][j] == 'Y':
             #     lvl5 = Graph.Col(j*40, i*50, BLACK,40, 130)
             #     colList.append(lvl5)
 
-
+createGame(levelList.level1)
             
 
 
@@ -133,10 +133,12 @@ def updateGame():
         hero.death = spike.checkCollision(hero)
         if hero.death:
             break
+    hero.villainDeath = False
     for villain in villainList:
         hero.villainDeath = villain.checkCollision(hero)
         if hero.death:
             break
+    hero.getEnd = False
     for flag in flagList:
         hero.getEnd = flag.checkCollision(hero)
         if hero.death:
@@ -170,7 +172,7 @@ def draw(screen):
 
 
 
-    elif state == 'grid':
+    elif state == 'Start':
             #Background 
         background = pygame.image.load("jungle.jpg")
         backgroundTop = screen.get_height() - background.get_height()
