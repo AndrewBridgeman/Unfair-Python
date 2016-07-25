@@ -88,7 +88,7 @@ for i in range(len(levelList.level1)):
             lvl = Graph.Platform(BLACK, j*40, i*50, 40, 50)
             platformList.append(lvl)
         if levelList.level1[i][j] == 'I':
-            other = Graph.Platform(BLUE, j*40, i*50, 120, 50, True)
+            other = Graph.Platform(BLACK, j*40, i*50, 120, 50, True)
             invisList.append(other)
 
         if levelList.level1[i][j] == 'E':
@@ -131,6 +131,7 @@ def updateGame():
 # A method that does all the drawing for you.
 def draw(screen):
     global deathVar
+
     if state == 'Main Menu':
         mainMenu = pygame.image.load('python.jpg')
         mainMenu = pygame.transform.scale(mainMenu, (500,500))
@@ -150,10 +151,10 @@ def draw(screen):
         backgroundLeft = screen.get_width()/2 - background.get_width()/2
 
         screen.blit(background, (backgroundLeft,backgroundTop))
-        # # copy the image of hero to the screen at the cordinate of hero
+            # # copy the image of hero to the screen at the cordinate of hero
         screen.blit(hero.img, (hero.x, hero.y))
-        
-        # Text
+            
+            # Text
         pygame.font.init()
         font = pygame.font.Font(None,36)
         text = font.render ("Total Deaths: " + str(deathVar),True,(255,0,0))

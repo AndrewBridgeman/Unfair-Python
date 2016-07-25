@@ -25,11 +25,13 @@ import GameLogic
     
 
         
-
+pygame.mixer.music.load("Undertale.mp3")
+pygame.mixer.music.play(-1,0.0)
 
 while True:
 #Use all events received by pygameB
     eventList = pygame.event.get()
+
     
     for event in eventList:
         if event.type == pygame.QUIT:
