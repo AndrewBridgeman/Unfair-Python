@@ -3,13 +3,15 @@
 #--------------------------
 import pygame
 from pygame.locals import *
+
 #Actually initialize pygame
 pygame.init()
 
 #Initialize the clock for the game, get that 60fps
 clock = pygame.time.Clock()
 
-#Make a screen of 500x500 resolution
+#Make a screen of 1200x500 resolution
+
 screen = pygame.display.set_mode((1200,500))
 
 #Make the game have the ability to be pressed and held
@@ -21,14 +23,7 @@ import GameLogic
 
 
     
-# if state == 'Main Menu':
-#     mainMenu = pygame.image.load('python.jpg')
-#     mainMenu = pygame.transform.scale(mainMenu, (300,300))
-#     mainMenu.set_colorkey(Graph.WHITE)
-#     pygame.font.init()
-#     GameLogic.draw(screen)
 
-#     pygame.display.flip()
         
 
 
@@ -40,8 +35,7 @@ while True:
         if event.type == pygame.QUIT:
             exit()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP: # Still need to make a tru jumping function, more than likely in GameLogic
-                #doesnt like to jump with nothing already, print says it goes through, but no reaction
+            if event.key == pygame.K_UP: 
                 GameLogic.hero.jump = True
                 GameLogic.pressUp = True
             elif event.key == pygame.K_DOWN:
@@ -69,6 +63,12 @@ while True:
                 GameLogic.pressRight = False 
             elif event.key == pygame.K_SPACE:
                 GameLogic.pressSpace = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if GameLogic.state == 'Main Menu':
+                if event.pos[0] >= GameLogic.btnX and event.pos[0] <= GameLogic.btnX + GameLogic.btnWidth and event.pos[1] >= GameLogic.btnY and event.pos[1] <= GameLogic.btnY + GameLogic.btnHeight:
+                    GameLogic.state = 'Start'
+                if event.pos[0] >= GameLogic.btnX1 and event.pos[0] <= GameLogic.btnX1 + GameLogic.btnWidth1 and event.pos[1] >= GameLogic.btnY1 and event.pos[1] <= GameLogic.btnY1 + GameLogic.btnHeight1:
+                    exit()
         if GameLogic.pressUp == True and GameLogic.pressRight == True:
                 # if GameLogic.hero.y >= 360:
                 #     GameLogic.hero.y -= 50
@@ -84,10 +84,11 @@ while True:
                     GameLogic.hero.x -= 1
                 GameLogic.pressUp=True
                 GameLogic.pressLeft = True
+        
 
 
 
-#Dont need, as we have no want for passively continued mvmt
+
         
     GameLogic.updateGame()
     GameLogic.draw(screen)

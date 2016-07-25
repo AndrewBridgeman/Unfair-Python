@@ -10,8 +10,14 @@ center = (x,y)
 img = Graph.someLoadedImage
 img2 = Graph.mongooseImage
 img3 = Graph.flagImage
-# Fl = Graph.Fl
-
+btnWidth = 150
+btnHeight = 50
+btnX = 50
+btnY = 225
+btnWidth1 = 150
+btnHeight1 = 50
+btnX1 = 950
+btnY1 = 225
 state = 'Main Menu'
 
 
@@ -118,10 +124,6 @@ def updateGame():
         hero.villianDeath = villain.checkCollision(hero)
         if hero.death:
             break
-    # for other in invisList:
-    #     hero.onInvis = other.checkCollision(hero)
-    #     if hero.onInvis:
-    #         break
     hero.update()
 
     
@@ -131,10 +133,15 @@ def draw(screen):
     global deathVar
     if state == 'Main Menu':
         mainMenu = pygame.image.load('python.jpg')
-        mainMenu = pygame.transform.scale(mainMenu, (300,300))
+        mainMenu = pygame.transform.scale(mainMenu, (500,500))
         mainMenu.set_colorkey(Graph.WHITE)
         pygame.font.init()
-        screen.blit(mainMenu, (100,100))
+        screen.blit(mainMenu, (350,0))
+
+        startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
+        endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
+
+
 
     else:
             #Background 
