@@ -194,6 +194,8 @@ class Spike:
             return True
         if x1 == px2 and y2 <= py2 and y1 >= py1:
             return True
+        if x1 + 40 > px1 and y1 > py1 and y1 < py2 and x2 < px2:
+            return True
         if y2 < py1:
             return False
         if y1 >= py2:
