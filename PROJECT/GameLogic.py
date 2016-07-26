@@ -4,7 +4,7 @@ from GraphicsUtil import *
 
 deathVar = 0
 x = 40
-y = 300
+y = 100
 vy = 0
 center = (x,y)
 img = Graph.someLoadedImage
@@ -12,14 +12,14 @@ img2 = Graph.mongooseImage
 img3 = Graph.flagImage
 btnWidth = 150
 btnHeight = 50
-btnX = 50
-btnY = 225
+btnX = 51
+btnY = 140
 btnWidth1 = 150
 btnHeight1 = 50
 btnX1 = 950
 btnY1 = 225
-btnX2 = 1000
-btnY2 = 100
+btnX2 = 48
+btnY2 = 340
 
 state = 'Main Menu'
 
@@ -65,8 +65,6 @@ class Hero:
             self.x, self.y = 40,300
             deathVar += 1
 
-
-       
         #Falling to death
         if hero.y >= 500:
             hero.x, hero.y = 40, 300
@@ -76,7 +74,7 @@ class Hero:
         if not self.getEnd:
             pass
         else:
-            self.x, self.y = 40, 300
+            state = "Main Menu"
 
  
         
@@ -160,13 +158,14 @@ def draw(screen):
         screen.blit(mainMenu, (350,0))
         font = pygame.font.Font(None, 36)
         text1 = font.render ("Start Game", True, (255,0,0))
-        screen.blit(text1,(59,238))
+        screen.blit(text1,(59,150))
         text2 = font.render ("Exit", True, (255,0,0))
         screen.blit(text2, (1000, 238))
-        text3 = font.render("Easy",True,(255,0,0))
-        screen.blit(text3,(1000,100))
+        text3 = font.render("Easy Mode",True,(255,0,0))
+        screen.blit(text3,(59,350))
         startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
         endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
+        middleG = pygame.draw.rect(screen,Graph.WHITE,((btnX2,btnY2),(btnWidth1,btnHeight1)),1)
         # easyG = pygame.draw.rect(screen,Graph.WHITE,)
 
 

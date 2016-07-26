@@ -21,8 +21,8 @@ pygame.key.set_repeat(50,50)
 import GameLogic
 #If you need GraphicsUtil, call as GameLogic.hero.Graph
         
-# pygame.mixer.music.load("Epic.mp3")
-# pygame.mixer.music.play(-1,0.0)
+pygame.mixer.music.load("Epic.mp3")
+pygame.mixer.music.play(-1,0.0)
 
 while True:
 #Use all events received by pygameB
