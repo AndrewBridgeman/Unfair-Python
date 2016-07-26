@@ -3,7 +3,6 @@
 #--------------------------
 import pygame
 from pygame.locals import *
-
 #Actually initialize pygame
 pygame.init()
 
@@ -86,7 +85,10 @@ while True:
                     GameLogic.hero.x -= 1
                 GameLogic.pressUp=True
                 GameLogic.pressLeft = True
-        
+    if GameLogic.hero.getEnd:
+        pygame.time.wait(500)
+        GameLogic.createGame(GameLogic.levelList.level2)
+        print('Really work plz')
 
 
 

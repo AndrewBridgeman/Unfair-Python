@@ -3,10 +3,6 @@ import GraphicsUtil as Graph
 from GraphicsUtil import *
 
 deathVar = 0
-x = 40
-y = 300
-vy = 0
-center = (x,y)
 img = Graph.someLoadedImage
 img2 = Graph.mongooseImage
 img3 = Graph.flagImage
@@ -18,21 +14,21 @@ btnWidth1 = 150
 btnHeight1 = 50
 btnX1 = 950
 btnY1 = 225
-btnX2 = 1000
-btnY2 = 100
+btnX2 = 48
+btnY2 = 340
 
 state = 'Main Menu'
 
 
 
 class Hero:
-    def __init__(self):
-        self.x = 40
-        self.y = 300
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
         self.img = Graph.someLoadedImage
         self.jump = False
         self.vy = 0
-
+        self.getEnd = False
     def getPos(self):
         rect = self.img.get_rect()
         return (self.x , self.y , self.x + rect.w, self.y + rect.h)
@@ -75,12 +71,14 @@ class Hero:
         #Lvl End
         if not self.getEnd:
             pass
-        else:
-            self.x, self.y = 40, 300
-
+        else:      
+            pass
+            # createGame(levelList.level2)
+            # print('Please work')
+            
  
         
-hero = Hero()
+hero = Hero(0,0)
 
 pressUp = False
 pressLeft = False
@@ -92,8 +90,16 @@ villainList = []
 flagList = []
 spikeList = []
 invisList = []
-colList = []
+spawnList = []
 def createGame(grid):
+    global x, y, vy, deathVar, hero
+    platformList.clear()
+    villainList.clear()
+    flagList.clear()
+    spikeList.clear()
+    invisList.clear()
+    spawnList.clear()
+    deathVar = 0
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             if grid[i][j] == 'P':
@@ -105,12 +111,15 @@ def createGame(grid):
             if grid[i][j] == 'E':
                 lvl2 = Graph.Villain(j*40,i*50)
                 villainList.append(lvl2)
-            if grid[i][j] == 'G':
+            if grid[i][j] == 'G': # Make cleaner and better ex. hero
                 lvl3 = Graph.Flag(j*40,i*50)
                 flagList.append(lvl3)
             if grid[i][j] == 'S':
                 lvl4 = Graph.Spike(j*40,i*50)
                 spikeList.append(lvl4)
+            if grid[i][j] == 'H':
+                hero = Hero(j*40,i*50)
+
             # if grid[i][j] == 'Y':
             #     lvl5 = Graph.Col(j*40, i*50, BLACK,40, 130)
             #     colList.append(lvl5)
@@ -118,6 +127,23 @@ def createGame(grid):
             
 
 
+def mMenu():
+    global screen
+    mainMenu = pygame.image.load('python.jpg')
+    mainMenu = pygame.transform.scale(mainMenu, (500,500))
+    mainMenu.set_colorkey(Graph.WHITE)
+    pygame.font.init()
+    screen.blit(mainMenu, (350,0))
+    font = pygame.font.Font(None, 36)
+    text1 = font.render ("Start Game", True, (255,0,0))
+    screen.blit(text1,(59,150))
+    text2 = font.render ("Exit", True, (255,0,0))
+    screen.blit(text2, (1000, 238))
+    text3 = font.render("Easy Mode",True,(255,0,0))
+    screen.blit(text3,(59,350))
+    startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
+    endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
+    middleG = pygame.draw.rect(screen,Graph.WHITE,((btnX2,btnY2),(btnWidth1,bthHeight1)),1)
 # update the game
 def updateGame():
     global deathVar
@@ -167,7 +193,6 @@ def draw(screen):
         screen.blit(text3,(1000,100))
         startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
         endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
-        # easyG = pygame.draw.rect(screen,Graph.WHITE,)
 
 
 
@@ -197,8 +222,6 @@ def draw(screen):
             villain.draw(screen)
         for other in invisList:
             other.draw(screen)
-        for col in colList:
-            col.draw(screen)
 
     
     elif state == 'Easy':
@@ -227,5 +250,4 @@ def draw(screen):
             villain.draw(screen)
         for other in invisList:
             other.draw(screen)
-        for col in colList:
-            col.draw(screen)
+        
