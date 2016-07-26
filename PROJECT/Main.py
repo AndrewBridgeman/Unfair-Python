@@ -88,7 +88,6 @@ while True:
     if GameLogic.hero.getEnd:
         pygame.time.wait(500)
         GameLogic.createGame(GameLogic.levelList.level2)
-        print('Really work plz')
 
 
 
@@ -99,4 +98,4 @@ while True:
 
     pygame.display.flip()
 
-    clock.tick(20)
+    clock.tick(60)
