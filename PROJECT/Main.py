@@ -88,6 +88,13 @@ while True:
     if GameLogic.hero.getEnd:
         pygame.time.wait(500)
         GameLogic.createGame(GameLogic.levelList.level2)
+    
+    if GameLogic.hero.getSimpleEnd2:
+        pygame.time.wait(500)
+        GameLogic.createGame(GameLogic.levelList.easylevel2)
+    if GameLogic.hero.getEnd3:
+        pygame.time.wait(500)
+        GameLogic.createGame(GameLogic.levelList.level3)
 
 
 

@@ -29,8 +29,11 @@ class Hero:
         self.jump = False
         self.vy = 0
         self.getEnd = False
+        self.getSimpleEnd2 = False
+        self.getEnd3 = False    
         self.spikeDeath = False
         self.grid = grid
+        self.flagHit = False
     def getPos(self):
         rect = self.img.get_rect()
         return (self.x , self.y , self.x + rect.w, self.y + rect.h)
@@ -78,7 +81,8 @@ class Hero:
         else:
             self.x,self.y = startx,starty
             deathVar += 1
-
+        if self.flagHit:
+            self.getEnd3 = True
  
         
 hero = Hero(0,0,levelList.level1)
@@ -94,6 +98,8 @@ flagList = []
 spikeList = []
 invisList = []
 spawnList = []
+flag2List = []
+flag3List = []
 def createGame(grid):
     global x, y, vy, deathVar, hero
     platformList.clear()
@@ -102,6 +108,8 @@ def createGame(grid):
     spikeList.clear()
     invisList.clear()
     spawnList.clear()
+    flag2List.clear()
+    flag3List.clear()
     deathVar = 0
     for i in range(len(grid)):
         for j in range(len(grid[i])):
@@ -122,33 +130,16 @@ def createGame(grid):
                 spikeList.append(lvl4)
             if grid[i][j] == 'H':
                 hero = Hero(j*40,i*50,grid)
+            if grid[i][j] == 'F':
+                lvl5 = Graph.Flag2(j*40,i*50)
+                flag2List.append(lvl5)
+            if grid[i][j] == 'K':
+                lvl6 = Graph.Flag3(j*40,i*50)
+                flag3List.append(lvl6)
                 
                 
 
-            # if grid[i][j] == 'Y':
-            #     lvl5 = Graph.Col(j*40, i*50, BLACK,40, 130)
-            #     colList.append(lvl5)
 
-            
-
-
-# def mMenu():
-#     global screen
-#     mainMenu = pygame.image.load('python.jpg')
-#     mainMenu = pygame.transform.scale(mainMenu, (500,500))
-#     mainMenu.set_colorkey(Graph.WHITE)
-#     pygame.font.init()
-#     screen.blit(mainMenu, (350,0))
-#     font = pygame.font.Font(None, 36)
-#     text1 = font.render ("Start Game", True, (255,0,0))
-#     screen.blit(text1,(59,150))
-#     text2 = font.render ("Exit", True, (255,0,0))
-#     screen.blit(text2, (1000, 238))
-#     text3 = font.render("Easy Mode",True,(255,0,0))
-#     screen.blit(text3,(59,350))
-#     startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
-#     endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
-#     middleG = pygame.draw.rect(screen,Graph.WHITE,((btnX2,btnY2),(btnWidth1,bthHeight1)),1)
 # update the game
 def updateGame():
     global deathVar
@@ -173,6 +164,14 @@ def updateGame():
         hero.getEnd = flag.checkCollision(hero)
         if hero.death:
             break
+    hero.getEnd2 = False
+    for flag2 in flag2List:
+        hero.getEnd2 = flag2.checkCollision(hero)
+        if hero.death:
+            break
+    hero.getEnd3 = False
+    for flag3 in flag3List:
+        hero.getEnd3 = flag3.checkCollision(hero)
     hero.update()
 
 
@@ -229,6 +228,10 @@ def draw(screen):
             villain.draw(screen)
         for other in invisList:
             other.draw(screen)
+        for flag2 in flag2List:
+            flag2.draw(screen)
+        for flag3 in flag3List:
+            flag3.draw(screen)
 
     
     elif state == 'Easy':
@@ -257,4 +260,8 @@ def draw(screen):
             villain.draw(screen)
         for other in invisList:
             other.draw(screen)
+        for flag2 in flag2List:
+            flag2.draw(screen)
+        for flag3 in flag3List:
+            flag3.draw(screen)
         

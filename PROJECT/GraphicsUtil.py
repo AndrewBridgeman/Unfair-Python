@@ -170,8 +170,76 @@ class Flag:
         if x1 < px2 and x2 > px2:
             return False
         return False
-    
 
+class Flag2:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(flagImage,(self.x,self.y))
+    def getPos(self):
+        return (self.x, self.y, self.x + 80, self.y + 80)
+    def checkCollision(self, hero):
+        x1, y1, x2, y2 = hero.getPos()
+        px1, py1, px2, py2 = self.getPos()
+        if x2 < px1:
+            return False 
+        if x2 == px1 and y2 >= py1 and y2 <= py2:
+            return True
+        if x1 == px2 and y2 <= py2 and y1 >= py1:
+            return True
+        if y2 < py1:
+            return False
+        if y1 >= py2:
+            return False
+        if y2 >= py1 and y1 < py1:
+            if x1 >= px1 and x2 <= px2:
+                return True
+            d = y2 - py1
+            dleft = x2 - px1
+            dright = px2 - x1
+            if (d < dleft and x1 < px1) or (d < dright and x2 > px2):
+                return True
+        if x2 > px1 and x1 < px1:
+            return False
+        if x1 < px2 and x2 > px2:
+            return False
+        return False
+    
+class Flag3:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw(self,screen):
+        screen.blit(flagImage,(self.x,self.y))
+    def getPos(self):
+        return (self.x, self.y, self.x + 80, self.y + 80)
+    def checkCollision(self, hero):
+        x1, y1, x2, y2 = hero.getPos()
+        px1, py1, px2, py2 = self.getPos()
+        if x2 < px1:
+            return False 
+        if x2 == px1 and y2 >= py1 and y2 <= py2:
+            return True
+        if x1 == px2 and y2 <= py2 and y1 >= py1:
+            return True
+        if y2 < py1:
+            return False
+        if y1 >= py2:
+            return False
+        if y2 >= py1 and y1 < py1:
+            if x1 >= px1 and x2 <= px2:
+                return True
+            d = y2 - py1
+            dleft = x2 - px1
+            dright = px2 - x1
+            if (d < dleft and x1 < px1) or (d < dright and x2 > px2):
+                return True
+        if x2 > px1 and x1 < px1:
+            return False
+        if x1 < px2 and x2 > px2:
+            return False
+        return False
 #Spikes
 spike = pygame.image.load("spikes.png")
 spike = pygame.transform.scale(spike,(40,50))
