@@ -9,7 +9,7 @@ img3 = Graph.flagImage
 btnWidth = 150
 btnHeight = 50
 btnX = 51
-btnY = 225
+btnY = 141
 btnWidth1 = 150
 btnHeight1 = 50
 btnX1 = 950
@@ -22,13 +22,15 @@ state = 'Main Menu'
 
 
 class Hero:
-    def __init__(self,x,y):
+    def __init__(self,x,y,grid):
         self.x = x
         self.y = y
         self.img = Graph.someLoadedImage
         self.jump = False
         self.vy = 0
         self.getEnd = False
+        self.spikeDeath = False
+        self.grid = grid
     def getPos(self):
         rect = self.img.get_rect()
         return (self.x , self.y , self.x + rect.w, self.y + rect.h)
@@ -36,7 +38,12 @@ class Hero:
     def update(self):
         global deathVar
         global vy
+        for i in range(len(self.grid)):
+            for j in range(len(self.grid[i])):
+                if self.grid[i][j] == 'H':
+                    startx, starty = j*40,i*50
         #Landing Function
+
         if not self.land:
             self.y += self.vy
             self.vy += 1.0 #gravity
@@ -53,24 +60,28 @@ class Hero:
         if not self.death:
             pass
         else:
-            self.x,self.y = 40, 300
+            self.x,self.y = startx, starty
             deathVar += 1
         if not self.villainDeath:
             pass
         else:
-            self.x, self.y = 40,300
+            self.x,self.y = startx, starty
             deathVar += 1
 
         #Falling to death
         if hero.y >= 500:
-            hero.x, hero.y = 40, 300
+            self.x,self.y = startx, starty
             deathVar += 1
 
-        #Lvl End
+        if not self.spikeDeath:
+            pass
+        else:
+            self.x,self.y = startx,starty
+            deathVar += 1
 
  
         
-hero = Hero(0,0)
+hero = Hero(0,0,levelList.level1)
 
 pressUp = False
 pressLeft = False
@@ -110,7 +121,9 @@ def createGame(grid):
                 lvl4 = Graph.Spike(j*40,i*50)
                 spikeList.append(lvl4)
             if grid[i][j] == 'H':
-                hero = Hero(j*40,i*50)
+                hero = Hero(j*40,i*50,grid)
+                
+                
 
             # if grid[i][j] == 'Y':
             #     lvl5 = Graph.Col(j*40, i*50, BLACK,40, 130)
@@ -119,23 +132,23 @@ def createGame(grid):
             
 
 
-def mMenu():
-    global screen
-    mainMenu = pygame.image.load('python.jpg')
-    mainMenu = pygame.transform.scale(mainMenu, (500,500))
-    mainMenu.set_colorkey(Graph.WHITE)
-    pygame.font.init()
-    screen.blit(mainMenu, (350,0))
-    font = pygame.font.Font(None, 36)
-    text1 = font.render ("Start Game", True, (255,0,0))
-    screen.blit(text1,(59,150))
-    text2 = font.render ("Exit", True, (255,0,0))
-    screen.blit(text2, (1000, 238))
-    text3 = font.render("Easy Mode",True,(255,0,0))
-    screen.blit(text3,(59,350))
-    startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
-    endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
-    middleG = pygame.draw.rect(screen,Graph.WHITE,((btnX2,btnY2),(btnWidth1,bthHeight1)),1)
+# def mMenu():
+#     global screen
+#     mainMenu = pygame.image.load('python.jpg')
+#     mainMenu = pygame.transform.scale(mainMenu, (500,500))
+#     mainMenu.set_colorkey(Graph.WHITE)
+#     pygame.font.init()
+#     screen.blit(mainMenu, (350,0))
+#     font = pygame.font.Font(None, 36)
+#     text1 = font.render ("Start Game", True, (255,0,0))
+#     screen.blit(text1,(59,150))
+#     text2 = font.render ("Exit", True, (255,0,0))
+#     screen.blit(text2, (1000, 238))
+#     text3 = font.render("Easy Mode",True,(255,0,0))
+#     screen.blit(text3,(59,350))
+#     startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
+#     endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
+#     middleG = pygame.draw.rect(screen,Graph.WHITE,((btnX2,btnY2),(btnWidth1,bthHeight1)),1)
 # update the game
 def updateGame():
     global deathVar
@@ -147,13 +160,13 @@ def updateGame():
             break
     hero.death = False
     for spike in spikeList:
-        hero.death = spike.checkCollision(hero)
-        if hero.death:
+        hero.spikeDeath = spike.checkCollision(hero)
+        if hero.spikeDeath:
             break
     hero.villainDeath = False
     for villain in villainList:
         hero.villainDeath = villain.checkCollision(hero)
-        if hero.death:
+        if hero.villainDeath:
             break
     hero.getEnd = False
     for flag in flagList:
@@ -177,20 +190,19 @@ def draw(screen):
         pygame.font.init()
         screen.blit(mainMenu, (350,0))
         font = pygame.font.Font(None, 36)
+        fontSmall = pygame.font.Font(None, 16)
         text1 = font.render ("Start Game", True, (255,0,0))
         screen.blit(text1,(59,150))
         text2 = font.render ("Exit", True, (255,0,0))
         screen.blit(text2, (1000, 238))
         text3 = font.render("Easy Mode",True,(255,0,0))
         screen.blit(text3,(59,350))
+        textD = fontSmall.render('(Demo)',True,(255,0,0))
+        screen.blit(textD,(100,375))
         startG = pygame.draw.rect(screen, Graph.WHITE, ((btnX,btnY), (btnWidth,btnHeight)),1)
         endG = pygame.draw.rect(screen, Graph.WHITE, ((btnX1,btnY1), (btnWidth1, btnHeight1)),1)
 
         middleG = pygame.draw.rect(screen,Graph.WHITE,((btnX2,btnY2),(btnWidth1,btnHeight1)),1)
-
-
-
-
     elif state == 'Start':
             #Background 
         background = pygame.image.load("jungle.jpg")
